@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap')
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    font-family: "Mulish", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+@layer components {
+    .btn {
+        @apply py-2 px-4 font-semibold rounded-lg shadow-md;
+    }
+
+    .btn-blue {
+        @apply bg-blue-500 text-white;
+    }
+
+    .btn-red {
+        @apply bg-red-500 text-white;
+    }
+
+    .heading{
+        @apply text-2xl tracking-wider text-center font-light
+    }
+
+    .navlinks {
+        @apply p-2 no-underline hover:text-white transition-all duration-500 ease-in
+    }
+    .navlinks-active {
+        @apply tracking-wider text-[17px]
+    }
+}
+
+@layer utilities {
+    
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+   
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+  }
+}
