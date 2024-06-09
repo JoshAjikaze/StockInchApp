@@ -1,7 +1,25 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import Root from "./pages/root"
+import Layout from "./pages/Layout"
+function App() {
 
-const App = () => {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Root />,
+      errorElement: <></>,
+      children: [
+        {
+          path: "home",
+          element: <Layout />
+        }
+      ]
+    }
+  ])
+
+
   return (
-    <div className="w-full h-screen text-white bg-black lg:hidden">App</div>
+    <RouterProvider router={router} />
   )
 }
 
