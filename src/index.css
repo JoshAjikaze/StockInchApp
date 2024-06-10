@@ -9,28 +9,14 @@
     padding: 0;
 }
 
+.linear{
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 35%, rgba(0,0,0,0.23433123249299714) 100%);
+    }
+
 @layer components {
-    .btn {
-        @apply py-2 px-4 font-semibold rounded-lg shadow-md;
-    }
-
-    .btn-blue {
-        @apply bg-blue-500 text-white;
-    }
-
-    .btn-red {
-        @apply bg-red-500 text-white;
-    }
-
-    .heading{
-        @apply text-2xl tracking-wider text-center font-light
-    }
-
-    .navlinks {
-        @apply p-2 no-underline hover:text-white transition-all duration-500 ease-in
-    }
-    .navlinks-active {
-        @apply tracking-wider text-[17px]
+    .btn-outline {
+        @apply flex justify-center items-center p-4 text-base font-semibold text-white rounded-2xl border border-white hover:text-white;
     }
 }
 
