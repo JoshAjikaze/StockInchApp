@@ -1,8 +1,12 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import fruit1 from '../../assets/images/Healthy food online shopping.png'
 import fruit2 from '../../assets/images/food delivery in a craft package from hand to hand.png'
 
 const SignIn = () => {
+    const navigate = useNavigate()
+    const handleLogin = () => {
+        navigate("/home")
+    }
     return (
         <main className="flex flex-col gap-y-5 px-5 py-[2.5vh] min-h-[90vh]">
             <div className="flex justify-between items-center">
@@ -15,7 +19,7 @@ const SignIn = () => {
 
             </div>
 
-            <form action="" className="flex flex-col gap-y-5 mt-5">
+            <form onSubmit={handleLogin} className="flex flex-col gap-y-5 mt-5">
          
                 <div className="flex relative">
                     <input id="name" type="text" placeholder="Name" className="w-full placeholder-transparent peer input-field" />

@@ -4,6 +4,7 @@ import SplashScreen from "./pages/SpslashScreen"
 import Userindex from "./user"
 import SignUp from "./user/auth/SignUp"
 import SignIn from "./user/auth/SignIn"
+import HomePage from "./user/home/HomePage";
 function App() {
 
   CapacitorApp.addListener('backButton', ({canGoBack}) => {
@@ -32,6 +33,10 @@ function App() {
     {
       path: "/sign-in",
       element: <SignIn />
+    },
+    {
+      path: "/home",
+      element: <HomePage />
     }
 
   ])
