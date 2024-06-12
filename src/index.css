@@ -27,6 +27,10 @@
     .input-label {
         @apply absolute peer-focus:text-Yellow peer-focus:-top-2.5 -top-3 peer-placeholder-shown:top-4 text-[black]/50 text-sm peer-placeholder-shown:font-bold font-bold peer-placeholder-shown:bg-white bg-white peer-placeholder-shown:p-0 px-1 left-5 transition-all
     }
+
+    .default-btn{
+        @apply bg-transparent outline-none border-none cursor-pointer
+    }
    
 }
 
