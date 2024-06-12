@@ -1,10 +1,12 @@
 import { Link, useNavigate } from "react-router-dom"
 import fruit1 from '../../assets/images/Healthy food online shopping.png'
 import fruit2 from '../../assets/images/food delivery in a craft package from hand to hand.png'
+import { FormEvent } from "react"
 
 const SignIn = () => {
     const navigate = useNavigate()
-    const handleLogin = () => {
+    const handleLogin = (e:FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         navigate("/home")
     }
     return (
@@ -30,8 +32,8 @@ const SignIn = () => {
                     <input id="name" type="password" placeholder="Name" className="w-full placeholder-transparent peer input-field" />
                     <label htmlFor="name" className="input-label">Password</label>
                 </div>
-                <div className="w-full text-sm text-right underline">
-                    <span>Forgot Password?</span>
+                <div className="w-full text-sm text-right">
+                    <Link to="/forgotpwd" className="text-Gray" >Forgot Password?</Link>
                 </div>
              
 
