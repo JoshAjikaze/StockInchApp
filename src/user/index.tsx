@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom'
 import logo from '../assets/icons/Logo.svg'
+import image from "../assets/images/woman-shopping-vegetables-supermarket.png";
+
 
 const Userindex = () => {
     return (
         <main>
-            <div className="absolute z-0 w-full h-full bg-no-repeat bg-cover bg-user-screen"></div>
+            
+            <div className="absolute z-0 w-full h-full">
+                <img src={image} alt="" className="w-full" />
+            </div>
 
             <div className='flex relative flex-col justify-between items-center px-10 h-screen linear'>
                 <div className="flex justify-end items-center mt-10 w-full">
@@ -18,7 +23,7 @@ const Userindex = () => {
 
                 <div className="flex flex-col gap-y-3 items-center mb-10 w-full">
                     <Link to="/sign-up" className="w-full text-white no-underline">
-                        <button className="w-full border-0 btn-outline bg-Yellow">
+                        <button className="w-full border-0 btn-outline hover:bg-Yellow/90 focus:bg-yellow bg-Yellow">
                             Next
                         </button>
                     </Link>

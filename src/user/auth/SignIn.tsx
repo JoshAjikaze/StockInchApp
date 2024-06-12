@@ -13,7 +13,6 @@ const SignIn = () => {
                 <h1>Login</h1>
                 <h4 className="font-light">Find everyday items close to you!</h4>
 
-                <div className="mt-5">Have an Account Already? <Link className="text-Gray" to="/sign-in">Login Here</Link></div>
             </div>
 
             <form action="" className="flex flex-col gap-y-5 mt-5">
@@ -36,7 +35,7 @@ const SignIn = () => {
                     Log In
                 </button>
 
-                <div className="w-full text-center">Not registered?<Link to="#" className="text-Gray">Create an Account</Link></div>
+                <div className="w-full text-center">Not registered? <Link to="/sign-up" className="text-Gray">Create an Account</Link></div>
                 <div className="mt-5 w-full text-sm text-center">Are you a retailer? <Link to="#" className="text-Gray">SWITCH TO REATILER ACCOUNT</Link></div>
 
             </form>

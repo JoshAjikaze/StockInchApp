@@ -21,7 +21,7 @@
     }
 
     .input-field {
-        @apply p-2 px-5 text-base h-8 rounded-lg outline-none border-2 border-solid focus:border-double focus:border-Yellow border-slate-700/50
+        @apply p-2 px-5 text-base h-8 rounded-lg outline-none border border-solid focus:border-double focus:border-Yellow border-slate-700/50
     }
 
     .input-label {

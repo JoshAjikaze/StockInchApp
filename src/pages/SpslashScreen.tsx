@@ -1,9 +1,12 @@
 import logo from "../assets/icons/Logo.svg";
+import image from "../assets/images/focused-young-man-paying-bill-store.png";
 import { Link } from 'react-router-dom';
 const SplashScreen = () => {
     return (
         <main>
-            <div className="absolute z-0 w-full h-full bg-no-repeat bg-cover bg-splash-screen"></div>
+            <div className="absolute z-0 w-full h-full">
+                <img src={image} alt="" className="w-full" />
+            </div>
 
             <div className='flex relative flex-col justify-between items-center px-10 h-screen linear'>
                 <div className="flex justify-end items-center mt-10 w-full">
