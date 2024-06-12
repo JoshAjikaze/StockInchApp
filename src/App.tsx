@@ -5,6 +5,7 @@ import Userindex from "./user"
 import SignUp from "./user/auth/SignUp"
 import SignIn from "./user/auth/SignIn"
 import HomePage from "./user/home/HomePage";
+import Categories from "./user/products/Categories";
 function App() {
 
   CapacitorApp.addListener('backButton', ({canGoBack}) => {
@@ -16,6 +17,10 @@ function App() {
   });
 
   const router = createBrowserRouter([
+    {
+      path: "*",
+      element: <div>Not found</div>
+    },
     {
       path: "/",
       element: <SplashScreen />,
@@ -37,7 +42,15 @@ function App() {
     {
       path: "/home",
       element: <HomePage />
-    }
+    },
+    {
+      path: "/categories",
+      element: <Categories />
+    },
+    // {
+    //   path: "/categories/:id",
+    //   element: <Categories />
+    // },
 
   ])
 
