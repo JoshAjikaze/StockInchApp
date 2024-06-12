@@ -36,7 +36,7 @@ const Allcategories = () => {
     const { isToggled } = useSelector((state: RootState) => state.categoryToggler);
 
     return (
-        <div className={`${isToggled ? "left-0" : "-left-full"} fixed top-0 w-full bg-white h-full transition-all duration-300`}>
+        <div className={`${isToggled ? "left-0" : "-left-full"} fixed z-50 top-0 w-full bg-white h-full transition-all duration-300 pt-5`}>
             <div className="flex justify-between items-center px-5">
                 <button onClick={() => dispatch(toggle())} className="flex justify-center items-center p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5">
