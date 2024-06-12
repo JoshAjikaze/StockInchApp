@@ -6,6 +6,7 @@ import SignUp from "./user/auth/SignUp"
 import SignIn from "./user/auth/SignIn"
 import HomePage from "./user/home/HomePage";
 import Categories from "./user/products/Categories";
+import ForgotPwd from "./user/auth/ForgotPwd";
 function App() {
 
   CapacitorApp.addListener('backButton', ({canGoBack}) => {
@@ -40,6 +41,10 @@ function App() {
       element: <SignIn />
     },
     {
+      path: "/forgotpwd",
+      element: <ForgotPwd />
+    },
+    {
       path: "/home",
       element: <HomePage />
     },
@@ -51,6 +56,7 @@ function App() {
     //   path: "/categories/:id",
     //   element: <Categories />
     // },
+    
 
   ])
 
