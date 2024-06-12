@@ -1,26 +1,30 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import Root from "./pages/root"
-import Layout from "./pages/Layout"
 import SplashScreen from "./pages/SpslashScreen"
+import Userindex from "./user"
+import SignUp from "./user/auth/SignUp"
+import SignIn from "./user/auth/SignIn"
 function App() {
 
   const router = createBrowserRouter([
     {
-      path: "/splash",
+      path: "/",
       element: <SplashScreen />,
       errorElement: <></>
     },
     {
-      path: "/",
-      element: <Root />,
-      errorElement: <></>,
-      children: [
-        {
-          path: "home",
-          element: <Layout />
-        }
-      ]
+      path: "/user",
+      element: <Userindex />,
+      errorElement: <></>
+    },
+    {
+      path: "/sign-up",
+      element: <SignUp />
+    },
+    {
+      path: "/sign-in",
+      element: <SignIn />
     }
+
   ])
 
 
