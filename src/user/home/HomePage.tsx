@@ -1,10 +1,17 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import ProductComponent from "../../components/ProductComponent";
 import CategoryComponent from "../../components/CategoryComponent";
+import Allcategories from "../products/Allcategories";
+import { toggle } from '../../features/slices/togglerSlices';
+import { useDispatch } from "react-redux"
+
 
 const HomePage = () => {
+    const dispatch = useDispatch();
+
     return (
         <main className="flex flex-col px-5 py-[2.5vh] h-[95vh] space-y-5">
+            <Allcategories />
             {/* name tag menu */}
             <div className="flex gap-x-5 items-center font-semibold text-Gray">
                 <img
@@ -49,7 +56,7 @@ const HomePage = () => {
                     />
                 </svg>
             </div>
-            
+
             {/* Recent Items Menu */}
             <div>
                 <p className="mb-3 font-semibold text-Gray">Recents</p>
@@ -99,18 +106,18 @@ const HomePage = () => {
 
                 </div>
             </div>
-            
+
             {/* categories menu */}
             <div>
                 <div className="flex justify-between items-center text-Gray">
                     <p className="mb-3 font-semibold text-Gray">Top categories</p>
-                    <Link to="#" className="text-sm no-underline text-Gray">See all</Link>
+                    <button onClick={() => dispatch(toggle())} className="text-sm no-underline text-Gray">See all</button>
                 </div>
-                
+
                 <div className="grid grid-cols-3 gap-3">
                     <CategoryComponent categoryProps={{
                         image: "",
-                        url: "#",
+                        url: "/categories",
                         title: "Groceries"
                     }} />
                     <CategoryComponent categoryProps={{
@@ -141,8 +148,9 @@ const HomePage = () => {
                 </div>
 
             </div>
-
+            
             <div></div>
+            
         </main>
     );
 };
