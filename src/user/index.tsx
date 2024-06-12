@@ -17,8 +17,8 @@ const Userindex = () => {
                 </div>
 
                 <div className="mt-10 space-y-2 text-center">
-                    <h2 className="leading-snug text-white">Find Everyday Items in Stores Close to you.</h2>
-                    <h6 className="tracking-wide leading-relaxed text-Yellow"> Introducing Stockinch, your one-stop app for a more streamlined shopping experience.</h6>
+                    <h2 className="leading-snug text-Yellow">Find Everyday Items in Stores Close to you.</h2>
+                    <h6 className="tracking-wide leading-relaxed text-white"> Introducing Stockinch, your one-stop app for a more streamlined shopping experience.</h6>
                 </div>
 
                 <div className="flex flex-col gap-y-3 items-center mb-10 w-full">
