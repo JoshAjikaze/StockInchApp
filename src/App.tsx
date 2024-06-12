@@ -49,13 +49,9 @@ function App() {
       element: <HomePage />
     },
     {
-      path: "/categories",
+      path: "/categories/:id",
       element: <Categories />
     },
-    // {
-    //   path: "/categories/:id",
-    //   element: <Categories />
-    // },
     
 
   ])

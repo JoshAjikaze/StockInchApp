@@ -117,7 +117,7 @@ const HomePage = () => {
                 <div className="grid grid-cols-3 gap-3">
                     <CategoryComponent categoryProps={{
                         image: "",
-                        url: "/categories",
+                        url: "/categories/groceries",
                         title: "Groceries"
                     }} />
                     <CategoryComponent categoryProps={{
