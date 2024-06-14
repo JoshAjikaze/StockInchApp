@@ -2,6 +2,7 @@
 import Allcategories from "../products/Allcategories";
 import { Outlet } from "react-router-dom";
 
+
 const HomePage = () => {
 
     return (
@@ -11,7 +12,9 @@ const HomePage = () => {
                 <Outlet />
             
             <div className="h-[7vh] fixed w-full bottom-0 bg-black/50 left-0">
-                navbar
+                <button>c</button>
+                <button></button>
+                <button></button>
             </div>
 
         </main>
