@@ -7,10 +7,12 @@ import SignIn from "./user/auth/SignIn"
 import HomePage from "./user/home/HomePage";
 import Categories from "./user/products/Categories";
 import ForgotPwd from "./user/auth/ForgotPwd";
+import UserHome from "./user/home/UserHome";
+import Profile from "./user/profile/Profile";
 function App() {
 
-  CapacitorApp.addListener('backButton', ({canGoBack}) => {
-    if(!canGoBack){
+  CapacitorApp.addListener('backButton', ({ canGoBack }) => {
+    if (!canGoBack) {
       CapacitorApp.exitApp();
     } else {
       window.history.back();
@@ -45,14 +47,25 @@ function App() {
       element: <ForgotPwd />
     },
     {
-      path: "/home",
-      element: <HomePage />
+      path: "/userscreen",
+      element: <HomePage />,
+      errorElement: <>Hello</>,
+      children: [
+        {
+          path: "/userscreen/home",
+          element: <UserHome />,
+        },
+        {
+          path: "/userscreen/profile",
+          element: <Profile />,
+        },
+      ],
     },
     {
       path: "/categories/:id",
       element: <Categories />
     },
-    
+
 
   ])
 

@@ -15,6 +15,12 @@
     background: linear-gradient(0deg, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 0.23433123249299714) 100%);
 }
 
+/* .translated-item{
+    transform: translateY(-40px);
+    padding: 10px;
+} */
+
+
 @layer components {
     .btn-outline {
         @apply flex justify-center items-center p-4 text-base font-semibold text-white bg-transparent rounded-2xl border border-white cursor-pointer hover:text-white;
@@ -26,6 +32,10 @@
 
     .input-label {
         @apply absolute peer-focus:text-Yellow peer-focus:-top-2.5 -top-3 peer-placeholder-shown:top-4 text-[black]/50 text-sm peer-placeholder-shown:font-bold font-bold peer-placeholder-shown:bg-white bg-white peer-placeholder-shown:p-0 px-1 left-5 transition-all
+    }
+
+    .default-btn{
+        @apply bg-transparent outline-none border-none cursor-pointer
     }
    
 }

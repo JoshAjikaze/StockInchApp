@@ -7,6 +7,7 @@ export const store = configureStore({
         [api.reducerPath]: api.reducer,
         categoryToggler: categoryToggler.reducer,
         modalToggler: modalToggler.reducer,
+        
     },
     
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware)

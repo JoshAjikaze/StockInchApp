@@ -18,12 +18,20 @@ export const modalToggler = createSlice({
   name: 'modalToggler',
   initialState: {
     isToggled: false,
+    isInventoryToggled: false,
+    isCategoryToggled: false,
   },
   reducers: {
     modalToggle: (state) => {
       state.isToggled = !state.isToggled;
     },
+    inventoryToggle: (state) => {
+      state.isInventoryToggled = !state.isInventoryToggled;
+    },
+    categoryToggle: (state) => {
+      state.isCategoryToggled= !state.isCategoryToggled;
+    },
   },
 });
 
-export const { modalToggle } = modalToggler.actions;
+export const { modalToggle, inventoryToggle, categoryToggle } = modalToggler.actions;

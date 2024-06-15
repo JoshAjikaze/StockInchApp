@@ -7,7 +7,7 @@ const SignIn = () => {
     const navigate = useNavigate()
     const handleLogin = (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        navigate("/home")
+        navigate("/userscreen/home")
     }
     return (
         <main className="flex flex-col gap-y-5 px-5 py-[2.5vh] min-h-[90vh]">
