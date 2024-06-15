@@ -4,13 +4,59 @@ import ProductComponent from "../../components/ProductComponent"
 import { toggle } from "../../features/slices/togglerSlices"
 import { categoryToggle } from "../../features/slices/togglerSlices"
 
-// export const CategoriesCata = [
-//     {
-//         image: "",
-//         url: "/categories/groceries",
-//         title: "Groceries"
-//     }
-// ]
+import medication from '../../assets/images/medication.png'
+import groceries from '../../assets/images/groceries.png'
+import beauty from '../../assets/images/beauty.png'
+import kids from '../../assets/images/kids.png'
+import liquor from '../../assets/images/liquor.png'
+import pets from '../../assets/images/pets.png'
+import school from '../../assets/images/school.png'
+import soft_drinks from '../../assets/images/soft-drinks.png'
+import sports from '../../assets/images/sports.png'
+import toiletry from '../../assets/images/toiletry.png'
+
+export const CategoriesData = [
+    {
+        image: groceries,
+        title: "Groceries"
+    },
+    {
+        image: medication,
+        title: "Medication"
+    },
+    {
+        image: beauty,
+        title: "Beauty"
+    },
+    {
+        image: kids,
+        title: "Kids"
+    },
+    {
+        image: liquor,
+        title: "Liquor"
+    },
+    {
+        image: pets,
+        title: "Pets"
+    },
+    {
+        image: school,
+        title: "Groceries"
+    },
+    {
+        image: soft_drinks,
+        title: "Soft Drinks"
+    },
+    {
+        image: sports,
+        title: "Sports"
+    },
+    {
+        image: toiletry,
+        title: "Toiletry"
+    },
+]
 
 const UserHome = () => {
 
@@ -121,36 +167,16 @@ const UserHome = () => {
                 </div>
 
                 <div className="grid grid-cols-3 gap-3 pb-3">
-                    <CategoryComponent categoryProps={{
-                        image: "",
-                        url: "/categories/groceries",
-                        title: "Groceries"
-                    }} />
-                    <CategoryComponent categoryProps={{
-                        image: "",
-                        url: "#",
-                        title: "Groceries"
-                    }} />
-                    <CategoryComponent categoryProps={{
-                        image: "",
-                        url: "#",
-                        title: "Groceries"
-                    }} />
-                    <CategoryComponent categoryProps={{
-                        image: "",
-                        url: "#",
-                        title: "Groceries"
-                    }} />
-                    <CategoryComponent categoryProps={{
-                        image: "",
-                        url: "#",
-                        title: "Groceries"
-                    }} />
-                    <CategoryComponent categoryProps={{
-                        image: "",
-                        url: "#",
-                        title: "Groceries"
-                    }} />
+                    {
+                        CategoriesData.slice(0, 6).map((item, Idx:number) => (
+                            <CategoryComponent key={Idx} categoryProps={{
+                                image: item.image,
+                                title: item.title
+                            }} />
+                        ))
+                    }
+                    
+                
                 </div>
 
             </div>
