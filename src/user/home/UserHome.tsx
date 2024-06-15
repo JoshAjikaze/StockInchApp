@@ -14,6 +14,7 @@ import school from '../../assets/images/school.png'
 import soft_drinks from '../../assets/images/soft-drinks.png'
 import sports from '../../assets/images/sports.png'
 import toiletry from '../../assets/images/toiletry.png'
+import milo from '../../assets/images/milo.png'
 
 export const CategoriesData = [
     {
@@ -114,35 +115,35 @@ const UserHome = () => {
                 <p className="mb-3 font-semibold text-Gray">Recents</p>
                 <div className="flex overflow-x-scroll flex-nowrap gap-x-5 no-scrollbar">
                     <ProductComponent product={{
-                        image: "",
+                        image: milo,
                         shop: "Shoprite",
                         title: "Raid Insecticide",
                         loaction: "Obafemi Awolowo Way, Alausa, Ojodu ",
                         price: 1150.0
                     }} componentType={1} />
                     <ProductComponent product={{
-                        image: "",
+                        image: milo,
                         shop: "Shoprite",
                         title: "Raid Insecticide",
                         loaction: "Obafemi Awolowo Way, Alausa, Ojodu ",
                         price: 0
                     }} componentType={1} />
                     <ProductComponent product={{
-                        image: "",
+                        image: milo,
                         shop: "Shoprite",
                         title: "Raid Insecticide",
                         loaction: "Obafemi Awolowo Way, Alausa, Ojodu ",
                         price: 0
                     }} componentType={1} />
                     <ProductComponent product={{
-                        image: "",
+                        image: milo,
                         shop: "Shoprite",
                         title: "Raid Insecticide",
                         loaction: "Obafemi Awolowo Way, Alausa, Ojodu ",
                         price: 0
                     }} componentType={1} />
                     <ProductComponent product={{
-                        image: "",
+                        image: milo,
                         shop: "Shoprite",
                         title: "Raid Insecticide",
                         loaction: "Obafemi Awolowo Way, Alausa, Ojodu ",
