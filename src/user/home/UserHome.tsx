@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux"
 import CategoryComponent from "../../components/CategoryComponent"
 import ProductComponent from "../../components/ProductComponent"
 import { toggle } from "../../features/slices/togglerSlices"
+import { categoryToggle } from "../../features/slices/togglerSlices"
 
 const UserHome = () => {
 
@@ -9,8 +10,8 @@ const UserHome = () => {
 
     return (
         <div className="space-y-5">
-                 {/* name tag menu */}
-                 <div className="flex gap-x-5 items-center font-semibold text-Gray">
+            {/* name tag menu */}
+            <div className="flex gap-x-5 items-center font-semibold text-Gray">
                 <img
                     src="https://placehold.co/100x100"
                     alt="image"
@@ -29,7 +30,7 @@ const UserHome = () => {
                     className="p-2 px-10 rounded-md border-transparent border-solid outline-none bg-LightGray basis-full"
                 />
 
-                <button className="flex justify-center items-center px-2 rounded-md border-solid size-10 bg-Yellow border-Yellow">
+                <button onClick={() => dispatch(categoryToggle())} className="flex justify-center items-center px-2 rounded-md border-solid size-10 bg-Yellow border-Yellow">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -52,7 +53,8 @@ const UserHome = () => {
                         clipRule="evenodd"
                     />
                 </svg>
-            </div>  
+            </div>
+            
             {/* Recent Items Menu */}
             <div>
                 <p className="mb-3 font-semibold text-Gray">Recents</p>
@@ -107,10 +109,10 @@ const UserHome = () => {
             <div>
                 <div className="flex justify-between items-center text-Gray">
                     <p className="mb-3 font-semibold text-Gray">Top categories</p>
-                    <button onClick={() => dispatch(toggle())} className="default-btn text-sm no-underline text-Gray">See all</button>
+                    <button onClick={() => dispatch(toggle())} className="text-sm no-underline default-btn text-Gray">See all</button>
                 </div>
 
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-3 gap-3 pb-3">
                     <CategoryComponent categoryProps={{
                         image: "",
                         url: "/categories/groceries",

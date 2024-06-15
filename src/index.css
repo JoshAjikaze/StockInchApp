@@ -15,10 +15,11 @@
     background: linear-gradient(0deg, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 0.23433123249299714) 100%);
 }
 
-.translated-item{
-    transform: translateY(-30px);
+/* .translated-item{
+    transform: translateY(-40px);
     padding: 10px;
-}
+} */
+
 
 @layer components {
     .btn-outline {
