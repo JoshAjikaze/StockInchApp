@@ -38,6 +38,9 @@
         @apply bg-transparent outline-none border-none cursor-pointer
     }
    
+    .yellow-btn {
+        @apply w-4/5 default-btn bg-Yellow text-white p-3 rounded-lg
+    }
 }
 
 @layer utilities {

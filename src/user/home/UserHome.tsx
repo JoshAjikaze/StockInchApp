@@ -4,6 +4,14 @@ import ProductComponent from "../../components/ProductComponent"
 import { toggle } from "../../features/slices/togglerSlices"
 import { categoryToggle } from "../../features/slices/togglerSlices"
 
+// export const CategoriesCata = [
+//     {
+//         image: "",
+//         url: "/categories/groceries",
+//         title: "Groceries"
+//     }
+// ]
+
 const UserHome = () => {
 
     const dispatch = useDispatch()
@@ -54,7 +62,7 @@ const UserHome = () => {
                     />
                 </svg>
             </div>
-            
+
             {/* Recent Items Menu */}
             <div>
                 <p className="mb-3 font-semibold text-Gray">Recents</p>

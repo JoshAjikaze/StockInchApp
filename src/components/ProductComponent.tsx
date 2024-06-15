@@ -1,3 +1,5 @@
+import CheckBox from "./CheckBox/CheckBox";
+
 enum EProductComponentType {
   standardWidth = 1,
   flexed = 2,
@@ -30,7 +32,7 @@ const ProductComponent = ({ product, componentType }: TProductComponent) => {
 
       <div className="flex justify-between items-center p-2 rounded-b-lg bg-LightGray">
         <p>₦{product.price}</p> 
-        <input type="checkbox" name="" id="" />
+        <CheckBox />
       </div>
     </div>
   );
