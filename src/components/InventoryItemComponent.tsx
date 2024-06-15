@@ -20,7 +20,7 @@ const InventoryItemComponent = ({product}:TComponentProps) => {
       {/* Left side */}
       <div className="space-y-3">
         <div className="flex items-center gap-x-5">
-          <img src={ product.image || "https://placehold.co/100x100"} alt="" className="size-12 rounded-lg" />
+          <img src={ product.image || "https://placehold.co/100x100"} alt="" className="rounded-lg size-12" />
           <div>
             <p className="text-base font-semibold">{product.title}</p>
             <p><span>{product.shop}</span></p>
@@ -37,18 +37,18 @@ const InventoryItemComponent = ({product}:TComponentProps) => {
       </div>
 
       {/* Right Side */}
-      <div className="flex flex-col gap-y-2 items-end text-xs">
+      <div className="flex flex-col items-end text-xs gap-y-2">
         <button className="default-btn">
           <img src={trash} alt="" className="size-6" />
         </button>
 
         <div className="flex items-center">
-          <button className="default-btn bg-Gray px-2 rounded-l-lg text-white"> - </button>
+          <button className="px-2 text-white rounded-l-lg default-btn bg-Gray"> - </button>
           <div className="px-2">1</div>
-          <button className="default-btn bg-Gray px-2 rounded-r-lg text-white"> + </button>
+          <button className="px-2 text-white rounded-r-lg default-btn bg-Gray"> + </button>
         </div>
 
-        <p><span className="font-medium">N</span> {product.price}</p>
+        <p className='text-sm'><span className="font-medium">N</span> {product.price}</p>
       </div>
     </section>
   )
