@@ -11,7 +11,7 @@ const SignIn = () => {
     }
     return (
         <main className="flex flex-col gap-y-5 px-5 py-[2.5vh] min-h-[90vh]">
-            <div className="flex justify-between items-center">
+            <div className="flex items-center justify-between">
                 <img src={fruit1} alt="" />
                 <img src={fruit2} alt="" />
             </div>
@@ -21,28 +21,28 @@ const SignIn = () => {
 
             </div>
 
-            <form onSubmit={handleLogin} className="flex flex-col gap-y-5 mt-5">
+            <form onSubmit={handleLogin} className="flex flex-col mt-5 gap-y-5">
          
-                <div className="flex relative">
-                    <input id="name" type="text" placeholder="Name" className="w-full placeholder-transparent peer input-field" />
-                    <label htmlFor="name" className="input-label">Email Address</label>
+                <div className="relative flex">
+                    <input id="email" type="text" placeholder="Name" className="w-full placeholder-transparent peer input-field" />
+                    <label htmlFor="email" className="input-label">Email Address</label>
                 </div>
         
-                <div className="flex relative">
-                    <input id="name" type="password" placeholder="Name" className="w-full placeholder-transparent peer input-field" />
-                    <label htmlFor="name" className="input-label">Password</label>
+                <div className="relative flex">
+                    <input id="password" type="password" placeholder="Name" className="w-full placeholder-transparent peer input-field" />
+                    <label htmlFor="password" className="input-label">Password</label>
                 </div>
                 <div className="w-full text-sm text-right">
                     <Link to="/forgotpwd" className="text-Gray" >Forgot Password?</Link>
                 </div>
              
 
-                <button className="rounded-md border-0 btn-outline bg-Yellow hover:bg-Yellow/90">
+                <button className="border-0 rounded-md btn-outline bg-Yellow hover:bg-Yellow/90">
                     Log In
                 </button>
 
                 <div className="w-full text-center">Not registered? <Link to="/sign-up" className="text-Gray">Create an Account</Link></div>
-                <div className="mt-5 w-full text-sm text-center">Are you a retailer? <Link to="#" className="text-Gray">SWITCH TO REATILER ACCOUNT</Link></div>
+                <div className="w-full mt-5 text-sm text-center">Are you a retailer? <Link to="#" className="text-Gray">SWITCH TO REATILER ACCOUNT</Link></div>
 
             </form>
         </main>

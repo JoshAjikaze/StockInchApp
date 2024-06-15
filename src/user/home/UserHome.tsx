@@ -16,6 +16,7 @@ import sports from '../../assets/images/sports.png'
 import toiletry from '../../assets/images/toiletry.png'
 import milo from '../../assets/images/milo.png'
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const CategoriesData = [
     {
         image: groceries,
@@ -66,7 +67,7 @@ const UserHome = () => {
     return (
         <div className="space-y-5">
             {/* name tag menu */}
-            <div className="flex gap-x-5 items-center font-semibold text-Gray">
+            <div className="flex items-center font-semibold gap-x-5 text-Gray">
                 <img
                     src="https://placehold.co/100x100"
                     alt="image"
@@ -78,14 +79,14 @@ const UserHome = () => {
             </div>
 
             {/* search menu */}
-            <div className="flex sticky top-5 gap-x-3">
+            <div className="sticky flex top-5 gap-x-3">
                 <input
                     type="text"
                     placeholder="Search Products, Brands..."
-                    className="p-2 px-10 rounded-md border-transparent border-solid outline-none bg-LightGray basis-full"
+                    className="p-2 px-10 border-transparent border-solid rounded-md outline-none bg-LightGray basis-full"
                 />
 
-                <button onClick={() => dispatch(categoryToggle())} className="flex justify-center items-center px-2 rounded-md border-solid size-10 bg-Yellow border-Yellow">
+                <button onClick={() => dispatch(categoryToggle())} className="flex items-center justify-center px-2 border-solid rounded-md size-10 bg-Yellow border-Yellow">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -162,22 +163,20 @@ const UserHome = () => {
 
             {/* categories menu */}
             <div>
-                <div className="flex justify-between items-center text-Gray">
+                <div className="flex items-center justify-between text-Gray">
                     <p className="mb-3 font-semibold text-Gray">Top categories</p>
                     <button onClick={() => dispatch(toggle())} className="text-sm no-underline default-btn text-Gray">See all</button>
                 </div>
 
-                <div className="grid grid-cols-3 gap-3 pb-3">
+                <div className="grid grid-cols-3 gap-3">
                     {
-                        CategoriesData.slice(0, 6).map((item, Idx:number) => (
+                        CategoriesData.slice(0, 6).map((item, Idx: number) => (
                             <CategoryComponent key={Idx} categoryProps={{
                                 image: item.image,
                                 title: item.title
                             }} />
                         ))
                     }
-                    
-                
                 </div>
 
             </div>

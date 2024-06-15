@@ -9,37 +9,37 @@ const SignUp = () => {
                 <div className="mt-5">Have an Account Already? <Link className="text-Gray" to="/sign-in">Login Here</Link></div>
             </div>
 
-            <form action="" className="flex flex-col gap-y-5 mt-5">
-                <div className="flex relative">
+            <form action="" className="flex flex-col mt-5 gap-y-5">
+                <div className="relative flex">
                     <input id="name" type="text" placeholder="Name" className="w-full placeholder-transparent peer input-field" />
                     <label htmlFor="name" className="input-label">Name</label>
                 </div>
-                <div className="flex relative">
-                    <input id="name" type="text" placeholder="Name" className="w-full placeholder-transparent peer input-field" />
-                    <label htmlFor="name" className="input-label">username</label>
+                <div className="relative flex">
+                    <input id="username" type="text" placeholder="Name" className="w-full placeholder-transparent peer input-field" />
+                    <label htmlFor="username" className="input-label">username</label>
                 </div>
-                <div className="flex relative">
-                    <input id="name" type="text" placeholder="Name" className="w-full placeholder-transparent peer input-field" />
-                    <label htmlFor="name" className="input-label">Email Address</label>
+                <div className="relative flex">
+                    <input id="email" type="text" placeholder="Name" className="w-full placeholder-transparent peer input-field" />
+                    <label htmlFor="email" className="input-label">Email Address</label>
                 </div>
-                <div className="flex relative">
-                    <input id="name" type="text" placeholder="Name" className="w-full placeholder-transparent peer input-field" />
-                    <label htmlFor="name" className="input-label">Phone Number</label>
+                <div className="relative flex">
+                    <input id="phone" type="text" placeholder="Name" className="w-full placeholder-transparent peer input-field" />
+                    <label htmlFor="phone" className="input-label">Phone Number</label>
                 </div>
-                <div className="flex relative">
-                    <textarea id="name" rows={5} placeholder="Name" className="w-full placeholder-transparent peer input-field" />
-                    <label htmlFor="name" className="input-label">Address</label>
+                <div className="relative flex">
+                    <textarea id="address" rows={5} placeholder="Name" className="w-full placeholder-transparent peer input-field" />
+                    <label htmlFor="address" className="input-label">Address</label>
                 </div>
-                <div className="flex relative">
-                    <input id="name" type="password" placeholder="Name" className="w-full placeholder-transparent peer input-field" />
-                    <label htmlFor="name" className="input-label">Password</label>
+                <div className="relative flex">
+                    <input id="password" type="password" placeholder="Name" className="w-full placeholder-transparent peer input-field" />
+                    <label htmlFor="password" className="input-label">Password</label>
                 </div>
-                <div className="flex relative">
-                    <input id="name" type="password" placeholder="Name" className="w-full placeholder-transparent peer input-field" />
-                    <label htmlFor="name" className="input-label">Confirm Password</label>
+                <div className="relative flex">
+                    <input id="confirmPassword" type="password" placeholder="Name" className="w-full placeholder-transparent peer input-field" />
+                    <label htmlFor="confirmPassword" className="input-label">Confirm Password</label>
                 </div>
 
-                <button className="rounded-md border-0 btn-outline bg-Yellow hover:bg-Yellow/90">
+                <button className="border-0 rounded-md btn-outline bg-Yellow hover:bg-Yellow/90">
                     Create Account
                 </button>
 

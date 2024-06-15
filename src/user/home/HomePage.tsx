@@ -15,7 +15,7 @@ const HomePage = () => {
     const dispatch = useDispatch()
 
     return (
-        <main className="flex flex-col px-5 py-[2.5vh] min-h-[95vh] space-y-5">
+        <main className="flex flex-col px-5 min-h-[95vh] space-y-5">
             <Allcategories />
             <SearchFilter />
             <Inventory />
@@ -29,7 +29,7 @@ const HomePage = () => {
                     <img src={homeicon} alt="" className="size-6" />
                 </button>
 
-                <button onClick={() => dispatch(inventoryToggle())} className="flex justify-center items-center rounded-full default-btn translated-item bg-Yellow size-12">
+                <button onClick={() => dispatch(inventoryToggle())} className="flex items-center justify-center rounded-full default-btn translated-item bg-Yellow size-12">
                     <img src={inventory} alt="" className="size-6" />
                 </button>
 
