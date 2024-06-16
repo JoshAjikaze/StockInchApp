@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux"
 import CategoryComponent from "../../components/CategoryComponent"
 import ProductComponent from "../../components/ProductComponent"
-import { toggle } from "../../features/slices/togglerSlices"
+import { searchToggle, toggle } from "../../features/slices/togglerSlices"
 import { categoryToggle } from "../../features/slices/togglerSlices"
 
 import medication from '../../assets/images/medication.png'
@@ -81,6 +81,7 @@ const UserHome = () => {
             {/* search menu */}
             <div className="flex sticky top-5 gap-x-3">
                 <input
+                onClick={() => dispatch(searchToggle())}
                     type="text"
                     placeholder="Search Products, Brands..."
                     className="p-4 px-10 rounded-md border-transparent border-solid outline-none bg-LightGray basis-full"

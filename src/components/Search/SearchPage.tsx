@@ -5,16 +5,17 @@ import { RootState } from "../../features/store"
 const SearchPage = () => {
 
     const dispatch = useDispatch();
-    const { isSearchToggled } = useSelector((state:RootState) => state.modalToggler)
+    const { isSearchToggled } = useSelector((state: RootState) => state.modalToggler)
 
-    dispatch(searchToggle())
     return (
-        <div className={` ${ isSearchToggled ? "bottom-0":"-bottom-full" } fixed left-0 w-[95%] px-[2.5%] h-screen bg-white transition-all duration-300 z-[100] space-y-10`}>
+        <div className={` ${isSearchToggled ? "bottom-0" : "-bottom-full"} fixed left-0 w-[95%] px-[2.5%] h-screen bg-white transition-all duration-300 z-[100] space-y-10`}>
 
-            <div className="flex gap-x-5 items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-8">
-                    <path fillRule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
-                </svg>
+            <div className="flex gap-x-5 items-center pt-10">
+                <button onClick={() => dispatch(searchToggle())} className="default-btn flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-8">
+                        <path fillRule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
+                    </svg>
+                </button>
                 <div className="flex relative justify-between items-center w-full">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="absolute left-3 size-5">
                         <path fillRule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clipRule="evenodd" />
@@ -26,10 +27,10 @@ const SearchPage = () => {
                 </div>
             </div>
 
-            <div className="text-lg font-medium">Search Result(s)</div>
-            
-            <div className="w-full h-[700px] bg-black/50 overflow-hidden">
-                
+            <div className="text-lg font-medium">Search Results</div>
+
+            <div className="w-full h-[700px] bg-black/0 overflow-hidden">
+
             </div>
 
         </div>
