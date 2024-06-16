@@ -10,15 +10,18 @@ import SearchFilter from "../products/SearchFilter";
 import { useDispatch } from "react-redux";
 import { inventoryToggle } from "../../features/slices/togglerSlices";
 import Inventory from "../products/Inventory";
+import SearchPage from "../../components/Search/SearchPage";
 
 const HomePage = () => {
     const dispatch = useDispatch()
 
     return (
         <main className="flex flex-col px-5 min-h-[95vh] space-y-5">
+            
             <Allcategories />
             <SearchFilter />
             <Inventory />
+            <SearchPage />
 
             <div className="pb-[10vh]">
                 <Outlet />

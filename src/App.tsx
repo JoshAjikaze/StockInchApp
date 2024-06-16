@@ -9,6 +9,9 @@ import Categories from "./user/products/Categories";
 import ForgotPwd from "./user/auth/ForgotPwd";
 import UserHome from "./user/home/UserHome";
 import Profile from "./user/profile/Profile";
+import ProductPage from "./user/products/ProductPage";
+
+
 function App() {
 
   CapacitorApp.addListener('backButton', ({ canGoBack }) => {
@@ -64,6 +67,10 @@ function App() {
     {
       path: "/categories/:id",
       element: <Categories />
+    },
+    {
+      path: "/product/:id",
+      element: <ProductPage />
     },
 
 
