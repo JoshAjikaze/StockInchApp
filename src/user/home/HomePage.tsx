@@ -38,7 +38,7 @@ const HomePage = () => {
                                 isPending ? <img src={homeicon2} alt="" className="size-6" /> : isActive ? <img src={homeicon} alt="" className="size-6" /> : <img src={homeicon2} alt="" className="size-6" />
                             )
                         }
-                    </NavLink>;
+                    </NavLink>
                 </button>
 
                 <button onClick={() => dispatch(inventoryToggle())} className="flex justify-center items-center rounded-full default-btn translated-item bg-Yellow size-12">
@@ -59,7 +59,7 @@ const HomePage = () => {
                                 isPending ? <img src={customer} alt="" className="size-6" /> : isActive ? <img src={customer2} alt="" className="size-6" /> : <img src={customer} alt="" className="size-6" />
                             )
                         }
-                    </NavLink>;
+                    </NavLink>
                 </button>
             </div>
 
