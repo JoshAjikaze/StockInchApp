@@ -67,11 +67,11 @@ const UserHome = () => {
     return (
         <div className="space-y-5">
             {/* name tag menu */}
-            <div className="flex items-center font-semibold gap-x-5 text-Gray">
+            <div className="flex gap-x-5 items-center mb-5 text-xl font-semibold text-Gray">
                 <img
                     src="https://placehold.co/100x100"
                     alt="image"
-                    className="rounded-full size-10"
+                    className="rounded-full size-12"
                 />
                 <p>
                     Hi, Kunle <span>👋</span>
@@ -79,19 +79,19 @@ const UserHome = () => {
             </div>
 
             {/* search menu */}
-            <div className="sticky flex top-5 gap-x-3">
+            <div className="flex sticky top-5 gap-x-3">
                 <input
                     type="text"
                     placeholder="Search Products, Brands..."
-                    className="p-2 px-10 border-transparent border-solid rounded-md outline-none bg-LightGray basis-full"
+                    className="p-4 px-10 rounded-md border-transparent border-solid outline-none bg-LightGray basis-full"
                 />
 
-                <button onClick={() => dispatch(categoryToggle())} className="flex items-center justify-center px-2 border-solid rounded-md size-10 bg-Yellow border-Yellow">
+                <button onClick={() => dispatch(categoryToggle())} className="flex justify-center items-center p-4 px-4 rounded-md border-solid size-14 bg-Yellow border-Yellow">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="currentColor"
-                        className="size-6"
+                        className="size-10"
                     >
                         <path d="M18.75 12.75h1.5a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5ZM12 6a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 12 6ZM12 18a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 12 18ZM3.75 6.75h1.5a.75.75 0 1 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5ZM5.25 18.75h-1.5a.75.75 0 0 1 0-1.5h1.5a.75.75 0 0 1 0 1.5ZM3 12a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 3 12ZM9 3.75a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5ZM12.75 12a2.25 2.25 0 1 1 4.5 0 2.25 2.25 0 0 1-4.5 0ZM9 15.75a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" />
                     </svg>
@@ -101,7 +101,7 @@ const UserHome = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
-                    className="absolute top-2.5 left-3 size-5"
+                    className="absolute left-3 top-[17px] size-5"
                 >
                     <path
                         fillRule="evenodd"
@@ -163,7 +163,7 @@ const UserHome = () => {
 
             {/* categories menu */}
             <div>
-                <div className="flex items-center justify-between text-Gray">
+                <div className="flex justify-between items-center text-Gray">
                     <p className="mb-3 font-semibold text-Gray">Top categories</p>
                     <button onClick={() => dispatch(toggle())} className="text-sm no-underline default-btn text-Gray">See all</button>
                 </div>
