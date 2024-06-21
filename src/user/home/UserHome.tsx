@@ -80,12 +80,17 @@ const UserHome = () => {
 
             {/* search menu */}
             <div className="flex sticky top-5 gap-x-3">
+
                 <input
-                onClick={() => dispatch(searchToggle())}
+                    onClick={() => dispatch(searchToggle())}
                     type="text"
                     placeholder="Search Products, Brands..."
-                    className="p-4 px-10 rounded-md border-transparent border-solid outline-none bg-LightGray basis-full"
+                    className="hidden p-4 px-10 rounded-md border-transparent border-solid outline-none bg-LightGray basis-full"
                 />
+
+                <div onClick={() => dispatch(searchToggle())} className="flex items-center pl-10 rounded-lg basis-full bg-LightGray text-Gray">
+                    Search Products, Brands...
+                </div>
 
                 <button onClick={() => dispatch(categoryToggle())} className="flex justify-center items-center p-4 px-4 rounded-md border-solid size-14 bg-Yellow border-Yellow">
                     <svg
@@ -117,6 +122,7 @@ const UserHome = () => {
                 <p className="mb-3 font-semibold text-Gray">Recents</p>
                 <div className="flex overflow-x-scroll flex-nowrap gap-x-5 no-scrollbar">
                     <ProductComponent product={{
+                        id: 1,
                         image: milo,
                         shop: "Shoprite",
                         title: "Raid Insecticide",
@@ -124,6 +130,7 @@ const UserHome = () => {
                         price: 1150.0
                     }} componentType={1} />
                     <ProductComponent product={{
+                        id: 2,
                         image: milo,
                         shop: "Shoprite",
                         title: "Raid Insecticide",
@@ -131,6 +138,7 @@ const UserHome = () => {
                         price: 0
                     }} componentType={1} />
                     <ProductComponent product={{
+                        id: 3,
                         image: milo,
                         shop: "Shoprite",
                         title: "Raid Insecticide",
@@ -138,6 +146,7 @@ const UserHome = () => {
                         price: 0
                     }} componentType={1} />
                     <ProductComponent product={{
+                        id: 4,
                         image: milo,
                         shop: "Shoprite",
                         title: "Raid Insecticide",
@@ -145,19 +154,13 @@ const UserHome = () => {
                         price: 0
                     }} componentType={1} />
                     <ProductComponent product={{
+                        id: 5,
                         image: milo,
                         shop: "Shoprite",
                         title: "Raid Insecticide",
                         loaction: "Obafemi Awolowo Way, Alausa, Ojodu ",
                         price: 0
                     }} componentType={1} />
-
-                    <div className="min-w-[200px] bg-black flex flex-col items-center justify-center rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-20 fill-Yellow">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                        <p className="text-Yellow">See More</p>
-                    </div>
 
                 </div>
             </div>

@@ -57,7 +57,10 @@ const SearchFilter = () => {
 
 
   return (
-    <div className={` ${ isCategoryToggled ? "bottom-0" : "-bottom-full"} fixed left-0 z-40 w-[90%] h-2/3 px-[5%] py-5 bg-white backdrop-blur-md shadow-[0px_-3px_3px_0px_rgba(0,0,0,0.12)] rounded-xl space-y-5 flex flex-col justify-between transition-all duration-300`}>
+    <div className={` ${ isCategoryToggled ? "bottom-0" : "-bottom-full"} fixed left-0 z-40 w-[90%] h-full px-[5%] py-5 bg-black/90 backdrop-blur-md shadow-[0px_-3px_3px_0px_rgba(0,0,0,0.12)] space-y-5 flex flex-col justify-between transition-all duration-300 `}>
+
+    
+    <div className={` ${ isCategoryToggled ? "bottom-0" : "-bottom-full"} fixed left-0 z-40 w-[90%] px-[5%] py-5 rounded-xl h-2/3 bg-white transition-all duration-300 delay-75 `}>
 
       <div className="flex items-center justify-between mb-5">
         <button onClick={() => dispatch(categoryToggle())} className="default-btn">
@@ -107,6 +110,7 @@ const SearchFilter = () => {
         <button className="w-4/5 default-btn bg-Yellow text-white p-3 rounded-lg">Apply Filter</button>
       </div>
 
+    </div>
     </div>
   )
 }
