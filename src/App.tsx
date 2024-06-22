@@ -10,6 +10,8 @@ import ForgotPwd from "./user/auth/ForgotPwd";
 import UserHome from "./user/home/UserHome";
 import Profile from "./user/profile/Profile";
 import ProductPage from "./user/products/ProductPage";
+import ChangePWD from "./user/profile/ChangePWD";
+import ChangeAddress from "./user/profile/ChangeAddress";
 
 
 function App() {
@@ -71,6 +73,14 @@ function App() {
     {
       path: "/product/:id",
       element: <ProductPage />
+    },
+    {
+      path: "/changepwd",
+      element: <ChangePWD />
+    },
+    {
+      path: "/changeaddress",
+      element: <ChangeAddress />
     },
 
 

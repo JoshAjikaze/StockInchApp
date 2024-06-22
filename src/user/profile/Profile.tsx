@@ -1,5 +1,6 @@
 import { useState, Fragment } from "react"
 import BackButton from "../../components/BackButton"
+import { Link } from "react-router-dom"
 
 const Profile = () => {
 
@@ -23,7 +24,7 @@ const Profile = () => {
 
               <section className="relative w-full md:w-[500px] space-y-5 mt-10 ">
 
-                <div className="relative w-[95%] px-[2.5%] py-2 border-solid border-[1px] border-black/25 rounded-md flex items-center gap-5 ">
+                <Link to="/changeaddress" className="text-Gray no-underline relative w-[95%] px-[2.5%] py-2 border-solid border-[1px] border-black/25 rounded-md flex items-center gap-5 ">
                   <p>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-8 stroke-LightGray">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
@@ -39,7 +40,7 @@ const Profile = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                     </svg>
                   </span>
-                </div>
+                </Link>
 
                 <div className="border-solid border-[1px] border-black/25 rounded-md">
 
@@ -74,7 +75,7 @@ const Profile = () => {
 
                 </div>
 
-                <div className="relative w-[95%] px-[2.5%] py-2 border-solid border-[1px] border-black/25 rounded-md flex items-center gap-5 ">
+                <Link to="/changepwd" className="text-Gray no-underline relative w-[95%] px-[2.5%] py-2 border-solid border-[1px] border-black/25 rounded-md flex items-center gap-5 ">
                   <p>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-8 stroke-LightGray">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
@@ -88,7 +89,7 @@ const Profile = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                     </svg>
                   </span>
-                </div>
+                </Link>
 
               </section>
 
@@ -101,12 +102,19 @@ const Profile = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
               </svg>
             </button>
-            <div className="flex justify-center items-center w-full">
-              <img src="https://placehold.co/100x100" alt="" className="rounded-full size-22" />
+
+            <div className="flex justify-center items-center my-20 w-full">
+              <div className="flex relative justify-center items-center bg-white rounded-full border-2 border-solid border-Yellow size-22">
+                <img src="https://placehold.co/100x100" alt="" className="rounded-full" />
+                <button className="flex absolute bottom-3 -right-4 justify-center items-center p-2 bg-white rounded-full shadow-md default-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5 fill-none stroke-Gray">
+                    <path d="m2.695 14.762-1.262 3.155a.5.5 0 0 0 .65.65l3.155-1.262a4 4 0 0 0 1.343-.886L17.5 5.501a2.121 2.121 0 0 0-3-3L3.58 13.419a4 4 0 0 0-.885 1.343Z" />
+                  </svg>
+                </button>
+              </div>
             </div>
 
             <div className="flex">
-
 
               <form action="" className="flex flex-col gap-y-5 px-5 py-[2.5vh] w-full">
                 <div className="flex relative">
@@ -129,7 +137,7 @@ const Profile = () => {
                   <input id="email" type="text" placeholder="Name" className="w-full placeholder-transparent cursor-not-allowed peer input-field" readOnly />
                   <label htmlFor="email" className="input-label">24/03/1999</label>
                 </div>
-                <div className="flex justify-center w-full">
+                <div className="flex justify-center my-5 w-full">
                   <button className="yellow-btn">Save Changes</button>
                 </div>
               </form>
