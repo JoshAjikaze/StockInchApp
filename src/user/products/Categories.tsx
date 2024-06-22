@@ -22,6 +22,7 @@ const Categories = () => {
 
       <div className="grid grid-cols-2 gap-2">
         <ProductComponent product={{
+          id: 1,
           image: "",
           shop: "Shoprite",
           title: "Raid Insecticide",
@@ -30,6 +31,7 @@ const Categories = () => {
         }} componentType={2}
         />
         <ProductComponent product={{
+          id: 2,
           image: "",
           shop: "Shoprite",
           title: "Raid Insecticide",
@@ -38,6 +40,7 @@ const Categories = () => {
         }} componentType={2}
         />
         <ProductComponent product={{
+          id: 3,
           image: "",
           shop: "Shoprite",
           title: "Raid Insecticide",
@@ -46,6 +49,7 @@ const Categories = () => {
         }} componentType={2}
         />
         <ProductComponent product={{
+          id: 4,
           image: "",
           shop: "Shoprite",
           title: "Raid Insecticide",
@@ -54,6 +58,7 @@ const Categories = () => {
         }} componentType={2}
         />
         <ProductComponent product={{
+          id: 5,
           image: "",
           shop: "Shoprite",
           title: "Raid Insecticide",
@@ -62,6 +67,7 @@ const Categories = () => {
         }} componentType={2}
         />
         <ProductComponent product={{
+          id: 6,
           image: "",
           shop: "Shoprite",
           title: "Raid Insecticide",
