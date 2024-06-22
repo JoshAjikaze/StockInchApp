@@ -1,6 +1,7 @@
 import InventoryItemIncrement from "../../components/InventoryItemIncrement"
 import ProductComponent from "../../components/ProductComponent"
 import milo from '../../assets/images/milo.png'
+import BackButton from "../../components/BackButton"
 
 
 const ProductPage = () => {
@@ -10,7 +11,9 @@ const ProductPage = () => {
         <img src={milo} alt="" className="object-cover w-full h-full" />
       </div>
       <div className="absolute z-50 w-full h-screen bg-black/70">
-        <div className="h-1/2" />
+        <div className="p-4 h-1/2">
+          <BackButton background />
+        </div>
         <div className="p-4 min-h-[50vh] bg-white rounded-t-2xl">
           {/* title */}
           <div className="flex gap-x-5 items-center">

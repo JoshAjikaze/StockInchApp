@@ -39,7 +39,7 @@
     }
    
     .yellow-btn {
-        @apply w-4/5 default-btn bg-Yellow text-white p-3 rounded-lg
+        @apply w-4/5 h-12 default-btn bg-Yellow text-white p-3 rounded-lg
     }
 }
 

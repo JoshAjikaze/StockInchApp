@@ -52,7 +52,7 @@ function App() {
     {
       path: "/userscreen",
       element: <HomePage />,
-      errorElement: <>Hello</>,
+      errorElement: <>An Error Has Occured</>,
       children: [
         {
           path: "/userscreen/home",
