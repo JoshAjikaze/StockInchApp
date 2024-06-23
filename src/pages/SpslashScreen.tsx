@@ -24,7 +24,7 @@ const SplashScreen = () => {
                             I'm a shopper
                         </button>
                     </Link>
-                    <Link to="#" className="w-full text-white no-underline">
+                    <Link to="/retailer" className="w-full text-white no-underline">
                         <button className="w-full btn-outline">
                             I'm a retailer
                         </button>

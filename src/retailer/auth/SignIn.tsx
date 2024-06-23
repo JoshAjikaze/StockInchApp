@@ -3,11 +3,11 @@ import fruit1 from '../../assets/images/Healthy food online shopping.png'
 import fruit2 from '../../assets/images/food delivery in a craft package from hand to hand.png'
 import { FormEvent } from "react"
 
-const SignIn = () => {
+const RetailerSignIn = () => {
     const navigate = useNavigate()
     const handleLogin = (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        navigate("/userscreen/home")
+        navigate("/retailer-screen/home")
     }
     return (
         <main className="flex flex-col gap-y-5 px-5 py-[2.5vh] min-h-[90vh]">
@@ -17,7 +17,7 @@ const SignIn = () => {
             </div>
             <div className="text-Gray">
                 <h1>Login</h1>
-                <h4 className="font-light">Find everyday items close to you!</h4>
+                <h4 className="font-light">Reach customers in your vicinity </h4>
 
             </div>
 
@@ -41,12 +41,12 @@ const SignIn = () => {
                     Log In
                 </button>
 
-                <div className="w-full text-center">Not registered? <Link to="/sign-up" className="text-Gray">Create an Account</Link></div>
-                <div className="w-full mt-5 text-sm text-center">Are you a retailer? <Link to="/retailer-sign-in" className="text-Gray">SWITCH TO REATILER ACCOUNT</Link></div>
+                <div className="w-full text-center">Not registered? <Link to="/retailer-sign-up" className="text-Gray">Create an Account</Link></div>
+                <div className="w-full mt-5 text-sm text-center">Are you a Shopper? <Link to="/sign-in" className="text-Gray">SWITCH TO SHOPPER ACCOUNT</Link></div>
 
             </form>
         </main>
     )
 }
 
-export default SignIn
+export default RetailerSignIn

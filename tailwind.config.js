@@ -16,7 +16,7 @@ export default {
     backgroundImage: {
       'splash-screen': "url('./src/assets/images/focused-young-man-paying-bill-store.png')",
       'user-screen': "url('./src/assets/images/woman-shopping-vegetables-supermarket.png')",
-    }
+    },
   },
   plugins: [require('daisyui'),],
 }

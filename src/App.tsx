@@ -12,6 +12,11 @@ import Profile from "./user/profile/Profile";
 import ProductPage from "./user/products/ProductPage";
 import ChangePWD from "./user/profile/ChangePWD";
 import ChangeAddress from "./user/profile/ChangeAddress";
+import Retailerindex from "./retailer";
+import RetailerSignUp from "./retailer/auth/SignUp";
+import RetailerSignIn from "./retailer/auth/SignIn";
+import RetailerHome from "./retailer/home/RetailerHome";
+import RetailerHomePage from "./retailer/home/HomePage";
 
 
 function App() {
@@ -83,6 +88,35 @@ function App() {
       element: <ChangeAddress />
     },
 
+
+    // Retailers Routes
+
+    {
+      path: "/retailer",
+      element: <Retailerindex />,
+    },
+    {
+      path: "/retailer-sign-up",
+      element: <RetailerSignUp />,
+    },
+    {
+      path: "/retailer-sign-in",
+      element: <RetailerSignIn />,
+    },
+    {
+      path: "/retailer-screen",
+      element: <RetailerHome />,
+      children: [
+        {
+          path: "/retailer-screen/home", 
+          element: <RetailerHomePage />
+        },
+        {
+          path: "/retailer-screen/profile", 
+          element: <>Profile</>
+        },
+      ]
+    },
 
   ])
 
