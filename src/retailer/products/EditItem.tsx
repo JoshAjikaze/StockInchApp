@@ -1,18 +1,17 @@
-import { addItemToggle } from "../../features/slices/togglerSlices"
+import { editItemToggle } from "../../features/slices/togglerSlices"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../features/store"
 
-
-const AddItem = () => {
+const EditItem = () => {
 
   const dispatch = useDispatch()
-  const { isAddItemToggled } = useSelector((state: RootState) => state.modalToggler)
+  const { isEditItemToggled } = useSelector((state:RootState) => state.modalToggler)
 
   return (
-    <div className={` ${isAddItemToggled ? 'left-0' : '-left-[200%]'} fixed bottom-0 h-screen bg-white w-[95%] px-[2.5%] z-[100] space-y-5`}>
+    <div className={` ${isEditItemToggled ? 'left-0' : '-left-[200%]'} fixed bottom-0 h-screen bg-white w-[95%] px-[2.5%] z-[100] space-y-5`}>
 
       <div className="flex justify-between items-center mt-5">
-        <button onClick={() => dispatch(addItemToggle())} className="default-btn">
+        <button onClick={() => dispatch(editItemToggle())} className="default-btn">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
             <path fillRule="evenodd" d="M11.03 3.97a.75.75 0 0 1 0 1.06l-6.22 6.22H21a.75.75 0 0 1 0 1.5H4.81l6.22 6.22a.75.75 0 1 1-1.06 1.06l-7.5-7.5a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 0 1 1.06 0Z" clipRule="evenodd" />
           </svg>
@@ -83,4 +82,4 @@ const AddItem = () => {
   )
 }
 
-export default AddItem
+export default EditItem

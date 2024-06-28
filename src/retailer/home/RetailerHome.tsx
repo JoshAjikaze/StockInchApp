@@ -3,19 +3,19 @@ import homeicon from '../../assets/icons/Home.png';
 import homeicon2 from '../../assets/icons/Home(1).png';
 import customer from '../../assets/icons/Customer.png';
 import customer2 from '../../assets/icons/Customer(1).png';
-import { useState } from 'react';
 import AddItem from '../products/AddItem';
+import { addItemToggle } from '../../features/slices/togglerSlices';
+import { useDispatch } from 'react-redux';
+import EditItem from '../products/EditItem';
 
 const RetailerHome = () => {
 
-    const [ToggleAddItem, setToggleAddItem] = useState(false)
-    const handleAddItem = () => {
-        setToggleAddItem(!ToggleAddItem)
-    }
+    const dispatch = useDispatch()
 
     return (
         <div>
-            <AddItem showComponent={ToggleAddItem} />
+            <AddItem />
+            <EditItem />
             <Outlet />
 
 
@@ -36,7 +36,7 @@ const RetailerHome = () => {
                     </NavLink>
                 </button>
 
-                <button onClick={handleAddItem} className="flex justify-center items-center rounded-full default-btn translated-item bg-Yellow size-12">
+                <button onClick={() => dispatch(addItemToggle())} className="flex justify-center items-center rounded-full default-btn translated-item bg-Yellow size-12">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 fill-white stroke-white">
                         <path fillRule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clipRule="evenodd" />
                     </svg>
