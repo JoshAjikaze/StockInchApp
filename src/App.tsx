@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { createHashRouter, RouterProvider } from "react-router-dom"
 import { App as CapacitorApp } from '@capacitor/app';
 import SplashScreen from "./pages/SpslashScreen"
 import Userindex from "./user"
@@ -17,6 +17,8 @@ import RetailerSignUp from "./retailer/auth/SignUp";
 import RetailerSignIn from "./retailer/auth/SignIn";
 import RetailerHome from "./retailer/home/RetailerHome";
 import RetailerHomePage from "./retailer/home/HomePage";
+import EditItem from "./retailer/products/EditItem";
+import Products from "./retailer/products/Products";
 
 
 function App() {
@@ -29,7 +31,7 @@ function App() {
     }
   });
 
-  const router = createBrowserRouter([
+  const router = createHashRouter([
     {
       path: "*",
       element: <div>Not found</div>
@@ -114,6 +116,14 @@ function App() {
         {
           path: "/retailer-screen/profile", 
           element: <>Profile</>
+        },
+        {
+          path: "/retailer-screen/products/:id", 
+          element: <Products />
+        },
+        {
+          path: "/retailer-screen/editproduct/:id", 
+          element: <EditItem />
         },
       ]
     },

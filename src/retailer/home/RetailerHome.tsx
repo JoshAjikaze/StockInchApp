@@ -6,7 +6,6 @@ import customer2 from '../../assets/icons/Customer(1).png';
 import AddItem from '../products/AddItem';
 import { addItemToggle } from '../../features/slices/togglerSlices';
 import { useDispatch } from 'react-redux';
-import EditItem from '../products/EditItem';
 
 const RetailerHome = () => {
 
@@ -15,7 +14,6 @@ const RetailerHome = () => {
     return (
         <div>
             <AddItem />
-            <EditItem />
             <Outlet />
 
 

@@ -23,13 +23,18 @@ const AddItem = () => {
 
       <div className="flex flex-col space-y-5">
 
-        <div className="flex basis-full">
-          <select id="" className="p-2 w-full h-12 rounded-md appearance-none outline-none border-slate-700/50 focus:border-Yellow">
+        <div className="flex relative basis-full">
+          <select id="" className="peer p-2 w-full h-12 rounded-md appearance-none outline-none border-slate-700/50 focus:border-Yellow">
             <option value="">Category</option>
             <option value="">Category 1</option>
             <option value="">Category 2</option>
             <option value="">Category 3</option>
           </select>
+
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="absolute right-5 top-3 size-6 peer-focus:fill-Yellow ">
+            <path fillRule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clipRule="evenodd" />
+          </svg>
+
         </div>
 
 
@@ -68,7 +73,7 @@ const AddItem = () => {
           <p className="text-sm font-semibold">Product Description/Tags</p>
           <p className="text-xs font-semibold">write short tags/description Help your customers find your products faster separate each word with a comma  Eg.  Food stuff, Grain, food</p>
           <div className="relative">
-            <textarea rows={5} id="email" placeholder="Name" className="w-full placeholder-transparent rounded-md peer" />
+            <textarea rows={5} id="email" placeholder="Name" className="p-2 w-full placeholder-transparent rounded-md outline-none peer focus:border-Yellow" />
             <label htmlFor="email" className="input-label">Description</label>
           </div>
         </div>

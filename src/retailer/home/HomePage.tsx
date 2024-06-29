@@ -52,7 +52,7 @@ const RetailerHomePage = () => {
             <div className='h-[50vh] overflow-y-scroll no-scrollbar bg-white shadow-[0px_0px_5px_0px_rgba(0,0,0,0.25)] rounded-lg p-5'>
             {
                     CategoriesData.map((item, Idx) => (
-                        <Link to={`/categories/${item.title.toLowerCase()}`} onClick={() => {}} key={Idx} className="flex relative gap-x-5 items-center text-black no-underline border">
+                        <Link to={`/retailer-screen/products/${item.title.toLowerCase()}`} key={Idx} className="flex relative gap-x-5 items-center text-black no-underline border">
                             <p>
                                 <img src={item.image || "https://placehold.co/30x30"} alt="" className="size-12" />
                             </p>

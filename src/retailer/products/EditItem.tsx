@@ -1,34 +1,33 @@
-import { editItemToggle } from "../../features/slices/togglerSlices"
-import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "../../features/store"
 
 const EditItem = () => {
 
-  const dispatch = useDispatch()
-  const { isEditItemToggled } = useSelector((state:RootState) => state.modalToggler)
-
   return (
-    <div className={` ${isEditItemToggled ? 'left-0' : '-left-[200%]'} fixed bottom-0 h-screen bg-white w-[95%] px-[2.5%] z-[100] space-y-5`}>
+    <div className={`fixed bottom-0 h-screen bg-white w-[95%] px-[2.5%] z-[100] space-y-5`}>
 
       <div className="flex justify-between items-center mt-5">
-        <button onClick={() => dispatch(editItemToggle())} className="default-btn">
+        <button onClick={() => {history.back()}} className="default-btn">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
             <path fillRule="evenodd" d="M11.03 3.97a.75.75 0 0 1 0 1.06l-6.22 6.22H21a.75.75 0 0 1 0 1.5H4.81l6.22 6.22a.75.75 0 1 1-1.06 1.06l-7.5-7.5a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 0 1 1.06 0Z" clipRule="evenodd" />
           </svg>
         </button>
-        <p className="text-xl font-bold text-Gray">Add Item</p>
+        <p className="text-xl font-bold text-Gray">Edit Item</p>
         <div />
       </div>
 
       <div className="flex flex-col space-y-5">
 
-        <div className="flex basis-full">
-          <select id="" className="p-2 w-full h-12 rounded-md appearance-none outline-none border-slate-700/50 focus:border-Yellow">
+      <div className="flex relative basis-full">
+          <select id="" className="p-2 w-full h-12 rounded-md appearance-none outline-none peer border-slate-700/50 focus:border-Yellow">
             <option value="">Category</option>
             <option value="">Category 1</option>
             <option value="">Category 2</option>
             <option value="">Category 3</option>
           </select>
+
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="absolute top-3 right-5 size-6 peer-focus:fill-Yellow">
+            <path fillRule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clipRule="evenodd" />
+          </svg>
+
         </div>
 
 
