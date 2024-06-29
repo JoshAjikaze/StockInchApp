@@ -19,6 +19,7 @@ import RetailerHome from "./retailer/home/RetailerHome";
 import RetailerHomePage from "./retailer/home/HomePage";
 import EditItem from "./retailer/products/EditItem";
 import Products from "./retailer/products/Products";
+import RetailerProfile from "./retailer/profile";
 
 
 function App() {
@@ -115,7 +116,7 @@ function App() {
         },
         {
           path: "/retailer-screen/profile", 
-          element: <>Profile</>
+          element: <RetailerProfile />
         },
         {
           path: "/retailer-screen/products/:id", 
