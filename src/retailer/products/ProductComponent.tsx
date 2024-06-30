@@ -1,20 +1,21 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-type TProductProps = {
-    id: string
-    image: string,
-    price: number,
-    title: string,
-    numberInInventory: number,
-    amountSold: number,
-}
+// type TProductProps = {
+//     id: string
+//     image: string,
+//     price: number,
+//     title: string,
+//     numberInInventory: number,
+//     amountSold: number,
+// }
 
-type TComponentProps = {
-    product? : TProductProps
-}
+// type TComponentProps = {
+//     product? : TProductProps
+// }
 
-const ProductComponent = ({ product }:TComponentProps) => {
+// const ProductComponent = ({ product }:TComponentProps) => {
+const ProductComponent = () => {
 
     const [showOptions, setshowOptions] = useState(false)
 
