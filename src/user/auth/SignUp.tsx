@@ -1,7 +1,8 @@
-import { ChangeEvent, FormEvent, useState } from "react"
+import { ChangeEvent, FormEvent, Fragment, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useRegisterMutation } from "../../features/api"
 import { TRegisterRequest } from "../../utils/types"
+import Loader from "../../components/loader/Loader";
 
 const SignUp = () => {
 const navigate = useNavigate()
@@ -30,7 +31,8 @@ const navigate = useNavigate()
         }
     }
     
-    return (
+    return (<Fragment>
+        {isLoading && <Loader />}
         <main className="flex flex-col gap-y-5 px-5 py-[2.5vh] min-h-[90vh]">
             <div className="text-Gray">
                 <h1>Sign Up</h1>
@@ -40,7 +42,7 @@ const navigate = useNavigate()
 
             <form onSubmit={handleSignUp} action="" className="flex flex-col gap-y-5 mt-5">
                 <div className="flex relative">
-                    <input id="name" name="name" onChange={handleChange} type="text" placeholder="Name" className="w-full placeholder-transparent peer input-field" />
+                    <input id="name" name="name" onChange={handleChange} type="text" placeholder="Name" className="w-full placeholder-transparent peer input-field" required />
                     <label htmlFor="name" className="input-label">Enter Full Name</label>
                 </div>
                 {/* <div className="flex relative">
@@ -48,11 +50,11 @@ const navigate = useNavigate()
                     <label htmlFor="username" className="input-label">username</label>
                 </div> */}
                 <div className="flex relative">
-                    <input id="email" name="email" onChange={handleChange} type="text" placeholder="Name" className="w-full placeholder-transparent peer input-field" />
+                    <input id="email" name="email" onChange={handleChange} type="text" placeholder="Name" className="w-full placeholder-transparent peer input-field" required />
                     <label htmlFor="email" className="input-label">Email Address</label>
                 </div>
                 <div className="flex relative">
-                    <input id="phone" name="phone" onChange={handleChange} type="text" placeholder="Name" className="w-full placeholder-transparent peer input-field" />
+                    <input id="phone" name="phone" onChange={handleChange} type="text" placeholder="Name" className="w-full placeholder-transparent peer input-field" required />
                     <label htmlFor="phone" className="input-label">Phone Number</label>
                 </div>
                 {/* <div className="flex relative">
@@ -60,7 +62,7 @@ const navigate = useNavigate()
                     <label htmlFor="address" className="input-label">Address</label>
                 </div> */}
                 <div className="flex relative">
-                    <input id="password" name="password" onChange={handleChange} type="password" placeholder="Name" className="w-full placeholder-transparent peer input-field" />
+                    <input id="password" name="password" onChange={handleChange} type="password" placeholder="Name" className="w-full placeholder-transparent peer input-field" required />
                     <label htmlFor="password" className="input-label">Password</label>
                 </div>
                 {/* <div className="flex relative">
@@ -77,6 +79,7 @@ const navigate = useNavigate()
             </form>
 
         </main>
+        </Fragment>
     )
 }
 
