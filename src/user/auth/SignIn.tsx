@@ -22,6 +22,8 @@ const SignIn = () => {
         e.preventDefault();
         try {
             const response = await trigger(data).unwrap()
+            console.log(response)
+
             navigate("/userscreen/home")
         } catch (error) {
             console.error(error)

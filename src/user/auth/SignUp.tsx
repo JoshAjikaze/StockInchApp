@@ -22,6 +22,8 @@ const navigate = useNavigate()
         e.preventDefault();
         try {
             const response = await trigger(data).unwrap()
+            console.log(response)
+
             navigate("/sign-in")
         } catch (error) {
             console.error(error)

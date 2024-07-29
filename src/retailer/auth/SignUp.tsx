@@ -23,6 +23,8 @@ const RetailerSignUp = () => {
         e.preventDefault();
         try {
             const response = await trigger(data).unwrap()
+            console.log(response)
+
             navigate("/retailer-sign-up")
         } catch (error) {
             console.error(error)
