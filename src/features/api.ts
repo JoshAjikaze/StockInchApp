@@ -3,7 +3,7 @@ import { TCreateInventoryItemRequest, TCreateInventoryItemResponse, TDeleteInven
 
 export const api = createApi({
     reducerPath: 'api',
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://stockinch.ng/app' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://stockinch.ng/backend' }),
     endpoints: (builder) => ({
 
         register: builder.mutation<TRegisterResponse, TRegisterRequest>({

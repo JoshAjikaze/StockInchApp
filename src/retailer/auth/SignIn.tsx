@@ -21,6 +21,7 @@ const RetailerSignIn = () => {
         e.preventDefault();
         try {
             const response = await trigger(data).unwrap()
+            console.log(response)
             navigate("/retailer-screen/home")
         } catch (error) {
             console.error(error)

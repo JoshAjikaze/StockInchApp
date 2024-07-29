@@ -23,7 +23,7 @@ const RetailerSignUp = () => {
         e.preventDefault();
         try {
             const response = await trigger(data).unwrap()
-            navigate("/login")
+            navigate("/retailer-sign-up")
         } catch (error) {
             console.error(error)
         }

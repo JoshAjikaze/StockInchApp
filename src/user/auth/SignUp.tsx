@@ -22,7 +22,7 @@ const navigate = useNavigate()
         e.preventDefault();
         try {
             const response = await trigger(data).unwrap()
-            navigate("/login")
+            navigate("/sign-in")
         } catch (error) {
             console.error(error)
         }
