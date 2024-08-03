@@ -4,6 +4,8 @@ import ProductComponent from "../../components/ProductComponent"
 import { searchToggle, toggle } from "../../features/slices/togglerSlices"
 import { categoryToggle } from "../../features/slices/togglerSlices"
 
+import { useGetUserProfileQuery } from "../../features/api"
+
 import medication from '../../assets/images/medication.png'
 import groceries from '../../assets/images/groceries.png'
 import beauty from '../../assets/images/beauty.png'
@@ -61,6 +63,9 @@ export const CategoriesData = [
 ]
 
 const UserHome = () => {
+
+    const { isFetching, data, isSuccess } = useGetUserProfileQuery("")
+    console.log(isFetching, data, isSuccess)
 
     const dispatch = useDispatch()
 

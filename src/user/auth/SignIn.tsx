@@ -1,11 +1,15 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import fruit1 from "../../assets/images/Healthy food online shopping.png";
 import fruit2 from "../../assets/images/food delivery in a craft package from hand to hand.png";
 import { ChangeEvent, FormEvent, Fragment, useState } from "react";
 import { useLoginMutation } from "../../features/api";
 import Loader from "../../components/loader/Loader";
+import { getUser } from "../../utils/useAuth";
 
 const SignIn = () => {
+  const { isLoggedIn } = getUser();
+  console.log(isLoggedIn);
+
   const [data, setdata] = useState({
     email: "",
     password: "",
@@ -22,13 +26,16 @@ const SignIn = () => {
     e.preventDefault();
     try {
       const response = await trigger(data).unwrap();
-      console.log(response);
-
+      localStorage.setItem("token", JSON.stringify(response.access));
       navigate("/userscreen/home");
     } catch (error) {
       console.error(error);
     }
   };
+
+  if (isLoggedIn) {
+    <Navigate to="/userscreen/home" replace={true} />;
+  }
 
   return (
     <Fragment>

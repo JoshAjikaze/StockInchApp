@@ -1,9 +1,29 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { TCreateInventoryItemRequest, TCreateInventoryItemResponse, TDeleteInventoryItemRequest, TDeleteInventoryItemResponse, TGetRetailerNotificationsResponse, TGetUserProfileResponse, TItemSearchRequest, TItemSearchResponse, TListInventoryItemsResponse, TLoginRequest, TLoginResponse, TRegisterRequest, TRegisterResponse, TUpdateInventoryItemRequest, TUpdateInventoryItemResponse, TUploadInventoryRequest, TUploadInventoryResponse, TViewItemRequest, TViewItemResponse } from '../utils/types'
+import { getUser } from '../utils/useAuth';
+
+const { userToken } = getUser()
 
 export const api = createApi({
     reducerPath: 'api',
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://stockinch.ng/backend' }),
+    baseQuery: fetchBaseQuery({
+        baseUrl: 'https://stockinch.ng/backend',
+        headers: {},
+        prepareHeaders: async (headers) => {
+
+            try {
+                const token = userToken || "";
+                if(token != null && token !== ""){
+                    headers.set('Authorization', `Bearer ${token}`)
+                }
+                return headers;
+            } catch (error) {
+                console.error(error);
+            }
+
+        }
+
+    }),
     endpoints: (builder) => ({
 
         register: builder.mutation<TRegisterResponse, TRegisterRequest>({
@@ -51,7 +71,7 @@ export const api = createApi({
                 body: data,
             }),
         }),
-        
+
         deleteInventoryItem: builder.mutation<TDeleteInventoryItemResponse, TDeleteInventoryItemRequest>({
             query: (data) => ({
                 url: `/inventory/api/delete/${data.item_id}`,
@@ -64,7 +84,7 @@ export const api = createApi({
         }),
 
         // Shoppers Endpoints
-        
+
         searchItems: builder.query<TItemSearchResponse, TItemSearchRequest>({
             query: (query) => `/inventory/api/search/${query}`,
         }),

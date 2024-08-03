@@ -20,7 +20,8 @@ type TLoginRequest = {
 }
 
 type TLoginResponse = {
-    token: string
+    access: string,
+    refresh: string
 }
 
 
