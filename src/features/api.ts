@@ -7,7 +7,7 @@ const { userToken } = getUser()
 export const api = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://stockinch.ng/backend',
+        baseUrl: 'https://stockinch.ng/app',
         headers: {},
         prepareHeaders: async (headers) => {
 
