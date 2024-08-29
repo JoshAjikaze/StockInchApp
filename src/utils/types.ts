@@ -49,7 +49,7 @@ type TCreateInventoryItemRequest = {
     price: number,
     category: string,
     location: string,
-    image: unknown
+    image_url: unknown
 }
 
 type TCreateInventoryItemResponse = {
@@ -61,7 +61,7 @@ type TCreateInventoryItemResponse = {
         price: number,
         category: string,
         location: string,
-        image: string
+        image_url: string
     }
 }
 
@@ -72,7 +72,7 @@ type TUpdateInventoryItemRequest = {
     price: number,
     category: string,
     location: string,
-    image: unknown
+    image_url: unknown
 }
 
 type TUpdateInventoryItemResponse = {
@@ -84,7 +84,7 @@ type TUpdateInventoryItemResponse = {
         price: number,
         category: string,
         location: string,
-        image: string
+        image_url: string
     }
 }
 

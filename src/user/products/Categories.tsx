@@ -1,9 +1,10 @@
 import { Fragment, useState } from "react"
-import ProductComponent from "../../components/ProductComponent"
+import ProductComponent from "@/components/ProductComponent"
 import { useParams } from 'react-router-dom'
+import { useGetProductsByCategoryQuery } from "@/features/api"
 
 const Categories = () => {
-  
+
   const [toggle, setToggle] = useState(false)
   const { id } = useParams()
 
@@ -11,12 +12,16 @@ const Categories = () => {
     setToggle(!toggle)
   }
 
+  const { isSuccess, isFetching, isError, data } = useGetProductsByCategoryQuery(id)
+  console.log(data)
+
+
   return (
     <Fragment>
       <main className="p-3">
 
-        <div className="flex sticky top-0 z-50 justify-between items-center py-3 mb-3 bg-white">
-          <button onClick={() => { history.back() }} className="flex justify-center items-center p-2 default-btn">
+        <div className="sticky top-0 z-50 flex items-center justify-between py-3 mb-3 bg-white">
+          <button onClick={() => { history.back() }} className="flex items-center justify-center p-2 default-btn">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5">
               <path fillRule="evenodd" d="M17 10a.75.75 0 0 1-.75.75H5.612l4.158 3.96a.75.75 0 1 1-1.04 1.08l-5.5-5.25a.75.75 0 0 1 0-1.08l5.5-5.25a.75.75 0 1 1 1.04 1.08L5.612 9.25H16.25A.75.75 0 0 1 17 10Z" clipRule="evenodd" />
             </svg>
@@ -33,78 +38,55 @@ const Categories = () => {
         </div>
 
         <div className="grid grid-cols-2 gap-2">
-          <ProductComponent product={{
-            id: 1,
-            image: "",
-            shop: "Shoprite",
-            title: "Raid Insecticide",
-            loaction: "Obafemi Awolowo Way, Alausa, Ojodu ",
-            price: 0
-          }} componentType={2}
-          />
-          <ProductComponent product={{
-            id: 2,
-            image: "",
-            shop: "Shoprite",
-            title: "Raid Insecticide",
-            loaction: "Obafemi Awolowo Way, Alausa, Ojodu ",
-            price: 0
-          }} componentType={2}
-          />
-          <ProductComponent product={{
-            id: 3,
-            image: "",
-            shop: "Shoprite",
-            title: "Raid Insecticide",
-            loaction: "Obafemi Awolowo Way, Alausa, Ojodu ",
-            price: 0
-          }} componentType={2}
-          />
-          <ProductComponent product={{
-            id: 4,
-            image: "",
-            shop: "Shoprite",
-            title: "Raid Insecticide",
-            loaction: "Obafemi Awolowo Way, Alausa, Ojodu ",
-            price: 0
-          }} componentType={2}
-          />
-          <ProductComponent product={{
-            id: 5,
-            image: "",
-            shop: "Shoprite",
-            title: "Raid Insecticide",
-            loaction: "Obafemi Awolowo Way, Alausa, Ojodu ",
-            price: 0
-          }} componentType={2}
-          />
-          <ProductComponent product={{
-            id: 6,
-            image: "",
-            shop: "Shoprite",
-            title: "Raid Insecticide",
-            loaction: "Obafemi Awolowo Way, Alausa, Ojodu ",
-            price: 0
-          }} componentType={2}
-          />
+
+          {
+            isSuccess && (
+              <>
+                {
+                  data?.map((item: { id: number; image_url: string; name: string; location: string; price: number }) =>
+                    <ProductComponent key={item.id} product={{
+                      id: item.id,
+                      image: item.image_url,
+                      shop: "Shoprite",
+                      title: item.name,
+                      loaction: item.location,
+                      price: item.price
+                    }} componentType={1} />
+                  )
+                }
+              </>
+            )
+          }
+          {
+            isSuccess && (
+              <>
+              {
+                data.length < 1 && (
+                  <>There are no Items in this category yet</>
+                )
+              }
+              </>
+            )
+          }
+
         </div>
 
       </main>
-      
+
       <div className={`${toggle ? "block" : "hidden"} fixed bottom-0 h-screen w-full z-50 bg-black/50`}>
         <div className={`${toggle ? "block" : "hidden"} fixed bottom-0 h-1/2 w-full z-50 bg-white rounded-t-lg`}>
-          <div className="flex justify-between items-center p-3">
-            <button onClick={handleToggle} className="flex justify-center items-center default-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-6">
-              <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
-            </svg>
+          <div className="flex items-center justify-between p-3">
+            <button onClick={handleToggle} className="flex items-center justify-center default-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-6">
+                <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+              </svg>
             </button>
 
             <button className="default-btn">Reset All</button>
           </div>
         </div>
       </div>
-      
+
     </Fragment>
   )
 }

@@ -1,25 +1,50 @@
 import { useState, Fragment } from "react"
 import BackButton from "../../components/BackButton"
 import { Link } from "react-router-dom"
+import { useLogout } from "../../utils/useLogout"
+import { useGetUserProfile } from "../../utils/useGetUserProfile"
+import Loader from "../../components/loader/Loader"
 
 const Profile = () => {
+  const handleLogout = useLogout('/sign-in');
+
 
   const [updateProfileState, setUpdateProfileState] = useState<boolean>(false)
+  
+  const { userProfile, isLoading, error } = useGetUserProfile()
+
+  console.log(userProfile, error)
+
+  const [userProfileState] = useState(
+    {
+      "name": "Ajiwojuolorun Joshua",
+      "phone_number": null,
+      "email": "ajiwojuolorunjoshua@gmail.com",
+      "address": null,
+      "profile_picture": null
+  }
+  )
+
+  if(isLoading){
+    return(
+       <Loader /> 
+    )
+}
 
   return (
     <div>
       {
         !updateProfileState ?
           <Fragment>
-            <div className="flex justify-between items-center">
+            <div className="flex items-center justify-between">
               <BackButton />
               <button onClick={() => { setUpdateProfileState(true) }} className="default-btn text-Yellow">Edit Profile</button>
             </div>
 
             <div className="bg-black/0 min-h-[60vh] mt-16 flex flex-col items-center p-5">
-              <div className="flex flex-col gap-y-5 items-center">
+              <div className="flex flex-col items-center gap-y-5">
                 <img src="https://placehold.co/100x100" alt="" className="rounded-full size-20" />
-                <p className="text-xl font-semibold text-Gray">Kunle Abina</p>
+                <p className="text-xl font-semibold text-Gray">{userProfileState?.name}</p>
               </div>
 
               <section className="relative w-full md:w-[500px] space-y-5 mt-10 ">
@@ -33,7 +58,7 @@ const Profile = () => {
                   </p>
                   <div>
                     <p className="font-medium">Address</p>
-                    <p className="text-Gray">+33A Adeniyi jones, Ikeja </p>
+                    <p className="text-Gray">Not Available</p>
                   </div>
                   <span className="absolute right-3">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 stroke-LightGray">
@@ -53,7 +78,7 @@ const Profile = () => {
                     </p>
                     <div>
                       <p className="font-medium">Phone No</p>
-                      <p className="text-Gray">+234 906 201 0260 </p>
+                      <p className="text-Gray">Not Available</p>
                     </div>
 
                   </div>
@@ -68,7 +93,7 @@ const Profile = () => {
                     </p>
                     <div>
                       <p className="font-medium">Email Address</p>
-                      <p className="text-Gray">kunleabina@gmail.com </p>
+                      <p className="text-Gray">{userProfileState?.email}</p>
                     </div>
 
                   </div>
@@ -91,6 +116,9 @@ const Profile = () => {
                   </span>
                 </Link>
 
+                <button onClick={() => handleLogout()} className="p-2">Logout</button>
+
+
               </section>
 
             </div>
@@ -103,10 +131,10 @@ const Profile = () => {
               </svg>
             </button>
 
-            <div className="flex justify-center items-center my-20 w-full">
-              <div className="flex relative justify-center items-center bg-white rounded-full border-2 border-solid border-Yellow size-22">
+            <div className="flex items-center justify-center w-full my-20">
+              <div className="relative flex items-center justify-center bg-white border-2 border-solid rounded-full border-Yellow size-22">
                 <img src="https://placehold.co/100x100" alt="" className="rounded-full" />
-                <button className="flex absolute bottom-3 -right-4 justify-center items-center p-2 bg-white rounded-full shadow-md default-btn">
+                <button className="absolute flex items-center justify-center p-2 bg-white rounded-full shadow-md bottom-3 -right-4 default-btn">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5 fill-none stroke-Gray">
                     <path d="m2.695 14.762-1.262 3.155a.5.5 0 0 0 .65.65l3.155-1.262a4 4 0 0 0 1.343-.886L17.5 5.501a2.121 2.121 0 0 0-3-3L3.58 13.419a4 4 0 0 0-.885 1.343Z" />
                   </svg>
@@ -117,30 +145,31 @@ const Profile = () => {
             <div className="flex">
 
               <form action="" className="flex flex-col gap-y-5 px-5 py-[2.5vh] w-full">
-                <div className="flex relative">
+                <div className="relative flex">
                   <input id="email" type="text" placeholder="Name" className="w-full placeholder-transparent cursor-not-allowed peer input-field" />
                   <label htmlFor="email" className="input-label">Email Address</label>
                 </div>
-                <div className="flex relative">
+                <div className="relative flex">
                   <input id="email" type="text" placeholder="Name" className="w-full placeholder-transparent cursor-not-allowed peer input-field" />
                   <label htmlFor="email" className="input-label">Email Address</label>
                 </div>
-                <div className="flex relative">
+                <div className="relative flex">
                   <input id="email" type="text" placeholder="Name" className="w-full placeholder-transparent cursor-not-allowed peer input-field" />
                   <label htmlFor="email" className="input-label">Email Address</label>
                 </div>
-                <div className="flex relative">
+                <div className="relative flex">
                   <input id="email" type="text" placeholder="Name" className="w-full placeholder-transparent cursor-not-allowed peer input-field" />
                   <label htmlFor="email" className="input-label">Email Address</label>
                 </div>
-                <div className="flex relative">
+                <div className="relative flex">
                   <input id="email" type="text" placeholder="Name" className="w-full placeholder-transparent cursor-not-allowed peer input-field" readOnly />
                   <label htmlFor="email" className="input-label">24/03/1999</label>
                 </div>
-                <div className="flex justify-center my-5 w-full">
+                <div className="flex justify-center w-full my-5">
                   <button className="yellow-btn">Save Changes</button>
                 </div>
               </form>
+
 
             </div>
 

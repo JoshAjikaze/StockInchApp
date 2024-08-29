@@ -25,7 +25,7 @@ const ProductComponent = ({ product, componentType }: TProductComponent) => {
       <div className="relative w-full rounded-t-lg">
         <Link to={`/product/${product.id}`}>
           <img src={product.image || "https://placehold.co/147x122"} alt="" className="object-cover w-full h-full rounded-t-md" />
-          <p className="absolute left-2 bottom-3 font-medium text-white">{product.shop}</p>
+          <p className="absolute font-medium text-white left-2 bottom-3">{product.shop}</p>
         </Link>
       </div>
 
@@ -34,7 +34,7 @@ const ProductComponent = ({ product, componentType }: TProductComponent) => {
         <p className="text-xs text-LightGray">{product.loaction}</p>
       </div>
 
-      <div className="flex justify-between items-center p-2 rounded-b-lg bg-LightGray">
+      <div className="flex items-center justify-between p-2 rounded-b-lg bg-LightGray">
         <p>₦{product.price}</p>
         <CheckBox />
       </div>

@@ -1,6 +1,6 @@
 export function getUser() {
 
-    const getUserLoginInfo = localStorage.getItem("user_details")
+    const getUserLoginInfo = localStorage.getItem("userProfile")
     const userInfo = JSON.parse(getUserLoginInfo as string)
 
     let lastName = "User"

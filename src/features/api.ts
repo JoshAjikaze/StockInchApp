@@ -7,13 +7,14 @@ const { userToken } = getUser()
 export const api = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://stockinch.ng/app',
+        // baseUrl: 'https://stockinch.ng/app',
+        baseUrl: 'http://127.0.0.1:8001',
         headers: {},
         prepareHeaders: async (headers) => {
 
             try {
                 const token = userToken || "";
-                if(token != null && token !== ""){
+                if (token != null && token !== "") {
                     headers.set('Authorization', `Bearer ${token}`)
                 }
                 return headers;
@@ -24,6 +25,8 @@ export const api = createApi({
         }
 
     }),
+    tagTypes: ['Cart'],
+
     endpoints: (builder) => ({
 
         register: builder.mutation<TRegisterResponse, TRegisterRequest>({
@@ -43,7 +46,38 @@ export const api = createApi({
         }),
 
         getUserProfile: builder.query<TGetUserProfileResponse, unknown>({
-            query: () => `/accounts/api/profile`,
+            query: () => `/accounts/api/profile/`,
+        }),
+
+        getProducts: builder.query({
+            query: () => `/api/inventory/products/`,
+        }),
+
+        getProductsByCategory: builder.query({
+            query: (id) => `/api/inventory/categories/${id}/products/`,
+        }),
+
+
+
+        getCategories: builder.query({
+            query: () => `/api/inventory/categories/`,
+        }),
+
+        // Add To Cart
+
+        addToCart: builder.mutation({
+            query: (id) => ({
+                url: `/shopper-panel/cart/add/${id}/`,
+                method: 'POST',
+                body: id,
+            }),
+            invalidatesTags: [
+                { type: 'Cart', id: 'All' }
+            ]
+        }),
+
+        viewCart: builder.query({
+            query: () => `/shopper-panel/cart/`,
         }),
 
         // Inventory Endpoints
@@ -56,9 +90,15 @@ export const api = createApi({
             }),
         }),
 
+
+
+        viewDashboard: builder.query({
+            query: () => `/retailer-panel/dashboard/`,
+        }),
+
         createInventoryItem: builder.mutation<TCreateInventoryItemResponse, TCreateInventoryItemRequest>({
             query: (data) => ({
-                url: '/inventory/api/create/',
+                url: '/retailer-panel/inventory/add/',
                 method: 'POST',
                 body: data,
             }),
@@ -105,6 +145,9 @@ export const {
     useRegisterMutation,
     useLoginMutation,
     useGetUserProfileQuery,
+    useGetProductsQuery,
+    useGetCategoriesQuery,
+    useGetProductsByCategoryQuery,
     useUploadInventoryListMutation,
     useCreateInventoryItemMutation,
     useUpdateInventoryItemMutation,
@@ -113,4 +156,12 @@ export const {
     useSearchItemsQuery,
     useViewItemQuery,
     useGetRetailerNotificationsQuery,
+    useViewDashboardQuery,
+
+    // add To cart
+    useAddToCartMutation,
+
+    // view Cart
+    useViewCartQuery,
+
 } = api

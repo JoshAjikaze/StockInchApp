@@ -1,10 +1,11 @@
 import { useDispatch } from "react-redux"
 import CategoryComponent from "../../components/CategoryComponent"
-import ProductComponent from "../../components/ProductComponent"
 import { searchToggle, toggle } from "../../features/slices/togglerSlices"
 import { categoryToggle } from "../../features/slices/togglerSlices"
 
-import { useGetUserProfileQuery } from "../../features/api"
+// import { useGetUserProfileQuery } from "../../features/api"
+import { useGetUserProfile } from "../../utils/useGetUserProfile"
+import { useGetCategoriesQuery } from "@/features/api"
 
 import medication from '../../assets/images/medication.png'
 import groceries from '../../assets/images/groceries.png'
@@ -16,9 +17,10 @@ import school from '../../assets/images/school.png'
 import soft_drinks from '../../assets/images/soft-drinks.png'
 import sports from '../../assets/images/sports.png'
 import toiletry from '../../assets/images/toiletry.png'
-import milo from '../../assets/images/milo.png'
+// import milo from '../../assets/images/milo.png'
+import RecentItems from "@/components/RecentItems"
+import ErrorComponent from "@/components/ErrorComponent"
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const CategoriesData = [
     {
         image: groceries,
@@ -63,41 +65,40 @@ export const CategoriesData = [
 ]
 
 const UserHome = () => {
-
-    const { isFetching, data, isSuccess } = useGetUserProfileQuery("")
-    console.log(isFetching, data, isSuccess)
-
     const dispatch = useDispatch()
+
+    const { userProfile } = useGetUserProfile()
+    const { isSuccess, isFetching, isError, data } = useGetCategoriesQuery("")
 
     return (
         <div className="space-y-5">
             {/* name tag menu */}
-            <div className="flex gap-x-5 items-center mb-5 text-xl font-semibold text-Gray">
+            <div className="flex items-center mb-5 text-xl font-semibold gap-x-5 text-Gray">
                 <img
                     src="https://placehold.co/100x100"
                     alt="image"
                     className="rounded-full size-12"
                 />
                 <p>
-                    Hi, Kunle <span>👋</span>
+                    Hi, {userProfile?.name} <span>👋</span>
                 </p>
             </div>
 
             {/* search menu */}
-            <div className="flex sticky top-5 gap-x-3">
+            <div className="sticky flex top-5 gap-x-3">
 
                 <input
                     onClick={() => dispatch(searchToggle())}
                     type="text"
                     placeholder="Search Products, Brands..."
-                    className="hidden p-4 px-10 rounded-md border-transparent border-solid outline-none bg-LightGray basis-full"
+                    className="hidden p-4 px-10 border-transparent border-solid rounded-md outline-none bg-LightGray basis-full"
                 />
 
                 <div onClick={() => dispatch(searchToggle())} className="flex items-center pl-10 rounded-lg basis-full bg-LightGray text-Gray">
                     Search Products, Brands...
                 </div>
 
-                <button onClick={() => dispatch(categoryToggle())} className="flex justify-center items-center p-4 px-4 rounded-md border-solid size-14 bg-Yellow border-Yellow">
+                <button onClick={() => dispatch(categoryToggle())} className="flex items-center justify-center p-4 px-4 border-solid rounded-md size-14 bg-Yellow border-Yellow">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -125,66 +126,37 @@ const UserHome = () => {
             {/* Recent Items Menu */}
             <div>
                 <p className="mb-3 font-semibold text-Gray">Recents</p>
-                <div className="flex overflow-x-scroll flex-nowrap gap-x-5 no-scrollbar">
-                    <ProductComponent product={{
-                        id: 1,
-                        image: milo,
-                        shop: "Shoprite",
-                        title: "Raid Insecticide",
-                        loaction: "Obafemi Awolowo Way, Alausa, Ojodu ",
-                        price: 1150.0
-                    }} componentType={1} />
-                    <ProductComponent product={{
-                        id: 2,
-                        image: milo,
-                        shop: "Shoprite",
-                        title: "Raid Insecticide",
-                        loaction: "Obafemi Awolowo Way, Alausa, Ojodu ",
-                        price: 0
-                    }} componentType={1} />
-                    <ProductComponent product={{
-                        id: 3,
-                        image: milo,
-                        shop: "Shoprite",
-                        title: "Raid Insecticide",
-                        loaction: "Obafemi Awolowo Way, Alausa, Ojodu ",
-                        price: 0
-                    }} componentType={1} />
-                    <ProductComponent product={{
-                        id: 4,
-                        image: milo,
-                        shop: "Shoprite",
-                        title: "Raid Insecticide",
-                        loaction: "Obafemi Awolowo Way, Alausa, Ojodu ",
-                        price: 0
-                    }} componentType={1} />
-                    <ProductComponent product={{
-                        id: 5,
-                        image: milo,
-                        shop: "Shoprite",
-                        title: "Raid Insecticide",
-                        loaction: "Obafemi Awolowo Way, Alausa, Ojodu ",
-                        price: 0
-                    }} componentType={1} />
-
-                </div>
+                <RecentItems />
             </div>
 
             {/* categories menu */}
             <div>
-                <div className="flex justify-between items-center text-Gray">
+                <div className="flex items-center justify-between text-Gray">
                     <p className="mb-3 font-semibold text-Gray">Top categories</p>
                     <button onClick={() => dispatch(toggle())} className="text-sm no-underline default-btn text-Gray">See all</button>
                 </div>
 
                 <div className="grid grid-cols-3 gap-3">
                     {
-                        CategoriesData.slice(0, 6).map((item, Idx: number) => (
-                            <CategoryComponent key={Idx} categoryProps={{
-                                image: item.image,
-                                title: item.title
-                            }} />
-                        ))
+                        isFetching && (
+                            <>Loading...</>
+                        )
+                    }
+                    <ErrorComponent isError={isError} />
+                    {
+                        isSuccess && (
+                            <>
+                                {
+                                    data?.slice(0, 6).map((item: { id: number; icon: string; name: string }) => (
+                                        <CategoryComponent key={item.id} categoryProps={{
+                                            image: item.icon,
+                                            title: item.name,
+                                            id: item.id
+                                        }} />
+                                    ))
+                                }
+                            </>
+                        )
                     }
                 </div>
 
