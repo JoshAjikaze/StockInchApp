@@ -47,8 +47,8 @@ const RetailerHomePage = () => {
                     </div>
                     <div>
                         <div>
-                            <p className="text-xl font-light text-Gray">Added to list</p>
-                            <p className="text-5xl font-bold text-Yellow">{data?.total_sales || 0} <span className='text-base text-Gray'>Last 30 Days</span> </p>
+                            <p className="text-xl font-light text-Gray">Inventory Value</p>
+                            <p className="text-4xl font-bold text-Yellow"> <span className='text-3xl'>N </span> {data?.total_inventory_value || 0}</p>
                         </div>
                     </div>
                 </div>

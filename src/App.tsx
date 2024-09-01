@@ -20,6 +20,9 @@ import RetailerHomePage from "./retailer/home/HomePage";
 import EditItem from "./retailer/products/EditItem";
 import Products from "./retailer/products/Products";
 import RetailerProfile from "./retailer/profile";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
+
 
 
 function App() {
@@ -111,19 +114,19 @@ function App() {
       element: <RetailerHome />,
       children: [
         {
-          path: "/retailer-screen/home", 
+          path: "/retailer-screen/home",
           element: <RetailerHomePage />
         },
         {
-          path: "/retailer-screen/profile", 
+          path: "/retailer-screen/profile",
           element: <RetailerProfile />
         },
         {
-          path: "/retailer-screen/products/:id", 
+          path: "/retailer-screen/products/:id",
           element: <Products />
         },
         {
-          path: "/retailer-screen/editproduct/:id", 
+          path: "/retailer-screen/editproduct/:id",
           element: <EditItem />
         },
       ]
@@ -133,7 +136,10 @@ function App() {
 
 
   return (
-    <RouterProvider router={router} />
+    <>
+      <ToastContainer autoClose={2000} closeOnClick />
+      <RouterProvider router={router} />
+    </>
   )
 }
 

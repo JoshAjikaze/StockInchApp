@@ -130,6 +130,7 @@ const Inventory = () => {
         </div>
 
       </div>
+
     </>
   )
 }

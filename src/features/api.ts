@@ -66,11 +66,17 @@ export const api = createApi({
         // Add To Cart
 
         addToCart: builder.mutation({
-            query: (id) => ({
-                url: `/shopper-panel/cart/add/${id}/`,
-                method: 'POST',
-                body: id,
-            }),
+            query: (id) => {
+
+                const formData = new FormData();
+                formData.append('inventory_item_id', id)
+
+                return ({
+                    url:"shopper-panel/cart/add/",
+                    method: "POST",
+                    body: formData
+                })
+            },
             invalidatesTags: [
                 { type: 'Cart', id: 'All' }
             ]
@@ -79,6 +85,12 @@ export const api = createApi({
         viewCart: builder.query({
             query: () => `/shopper-panel/cart/`,
         }),
+
+        fetchSingleProduct: builder.query({
+            query: (id) => `/shopper-panel/products/${id}/`,
+        }),
+
+        
 
         // Inventory Endpoints
 
@@ -163,5 +175,8 @@ export const {
 
     // view Cart
     useViewCartQuery,
+
+    // fetch Singlke Product
+    useFetchSingleProductQuery,
 
 } = api
