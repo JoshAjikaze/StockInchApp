@@ -93,7 +93,8 @@ type TDeleteInventoryItemRequest = {
 }
 
 type TDeleteInventoryItemResponse = {
-    message: string
+    message: string,
+    isSuccess:boolean
 }
 
 type TListInventoryItemsResponse = {

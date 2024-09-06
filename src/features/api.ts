@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { TCreateInventoryItemRequest, TCreateInventoryItemResponse, TDeleteInventoryItemRequest, TDeleteInventoryItemResponse, TGetRetailerNotificationsResponse, TGetUserProfileResponse, TItemSearchRequest, TItemSearchResponse, TListInventoryItemsResponse, TLoginRequest, TLoginResponse, TRegisterRequest, TRegisterResponse, TUpdateInventoryItemRequest, TUpdateInventoryItemResponse, TUploadInventoryRequest, TUploadInventoryResponse, TViewItemRequest, TViewItemResponse } from '../utils/types'
+import { TCreateInventoryItemRequest, TCreateInventoryItemResponse, TDeleteInventoryItemResponse, TGetRetailerNotificationsResponse, TGetUserProfileResponse, TItemSearchRequest, TItemSearchResponse, TListInventoryItemsResponse, TLoginRequest, TLoginResponse, TRegisterRequest, TRegisterResponse, TUpdateInventoryItemRequest, TUpdateInventoryItemResponse, TUploadInventoryRequest, TUploadInventoryResponse, TViewItemRequest, TViewItemResponse } from '../utils/types'
 import { getUser } from '../utils/useAuth';
 
 const { userToken } = getUser()
@@ -72,7 +72,7 @@ export const api = createApi({
                 formData.append('inventory_item_id', id)
 
                 return ({
-                    url:"shopper-panel/cart/add/",
+                    url: "shopper-panel/cart/add/",
                     method: "POST",
                     body: formData
                 })
@@ -90,7 +90,7 @@ export const api = createApi({
             query: (id) => `/shopper-panel/products/${id}/`,
         }),
 
-        
+
 
         // Inventory Endpoints
 
@@ -102,7 +102,11 @@ export const api = createApi({
             }),
         }),
 
+        // List Shopper Inventory People
 
+        ListInventory: builder.query({
+            query: () => `/retailer-panel/inventory/`,
+        }),
 
         viewDashboard: builder.query({
             query: () => `/retailer-panel/dashboard/`,
@@ -124,9 +128,9 @@ export const api = createApi({
             }),
         }),
 
-        deleteInventoryItem: builder.mutation<TDeleteInventoryItemResponse, TDeleteInventoryItemRequest>({
-            query: (data) => ({
-                url: `/inventory/api/delete/${data.item_id}`,
+        deleteInventoryItem: builder.mutation<TDeleteInventoryItemResponse, any>({
+            query: (item_id) => ({
+                url: `retailer-panel/inventory/${item_id}`,
                 method: 'DELETE',
             }),
         }),
@@ -178,5 +182,8 @@ export const {
 
     // fetch Singlke Product
     useFetchSingleProductQuery,
+
+    //List Inventory Retailer
+    useListInventoryQuery,
 
 } = api

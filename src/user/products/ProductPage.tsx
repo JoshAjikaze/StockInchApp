@@ -85,6 +85,9 @@ const ProductPage = () => {
               </div>
             </>
           }
+          {
+            isError && <>An Error Occured</>
+          }
         </div>
 
       </div>

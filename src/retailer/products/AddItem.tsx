@@ -1,10 +1,12 @@
+
 import { addItemToggle } from "../../features/slices/togglerSlices"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../features/store"
 import { useCreateInventoryItemMutation, useGetCategoriesQuery } from "../../features/api"
-import { ChangeEvent, FormEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 import LoadingComponent from "@/components/LoadingComponent"
 import ErrorComponent from "@/components/ErrorComponent"
+import { Bounce, toast } from "react-toastify"
 
 
 const AddItem = () => {
@@ -12,7 +14,7 @@ const AddItem = () => {
   const dispatch = useDispatch()
   const { isAddItemToggled } = useSelector((state: RootState) => state.modalToggler)
   const { isFetching, data, isError } = useGetCategoriesQuery("")
-
+  
   const [Product, setProduct] = useState(
     {
       name: "",
@@ -23,12 +25,14 @@ const AddItem = () => {
       image_url: undefined,
     }
   )
-
+  
+  
+  
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | any>) => {
-
+    
     const { name, value, type, files } = event.target;
-
+    
     if (type === 'file') {
       setProduct(Product => ({
         ...Product,
@@ -42,22 +46,33 @@ const AddItem = () => {
       }));
     }
   };
-
-
-  const [trigger] = useCreateInventoryItemMutation()
-
+  
+  
+  const [trigger, { isSuccess }] = useCreateInventoryItemMutation()
+  
   const addItem = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
+    
     try {
-      const response = await trigger(Product).unwrap()
-      console.log(response)
+      await trigger(Product).unwrap()
+      
     } catch (error) {
       console.log(error);
-
+      
     }
   }
-
+  
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Item Added Successfully ✔️", {
+        hideProgressBar: true,
+        transition: Bounce,
+        theme: "dark"
+      })
+    }
+    
+  }, [isSuccess])
+  
   return (
     <div className={` ${isAddItemToggled ? 'left-0' : '-left-[200%]'} fixed bottom-0 h-screen bg-white w-[95%] px-[2.5%] z-[100] space-y-5`}>
 
@@ -79,7 +94,7 @@ const AddItem = () => {
           <LoadingComponent isFetching={isFetching} />
           <ErrorComponent isError={isError} />
           <select id="" name="category" onChange={handleChange} className="w-full h-12 p-2 rounded-md outline-none appearance-none peer border-slate-700/50 focus:border-Yellow">
-          <option>Select category</option>
+            <option>Select category</option>
             {
               data?.map((data: { id: number, name: string }) => (
                 <option key={data.id} value={data.id}>{data.name}</option>
@@ -105,8 +120,9 @@ const AddItem = () => {
               </svg>
             </label>
 
+            {/* @ts-ignore */}
             <p className="font-semibold">{Product.image_url?.name || "Upload Image"}</p>
-            
+
           </div>
 
           <p className="text-sm font-semibold">
@@ -124,7 +140,7 @@ const AddItem = () => {
           <input id="name" name="name" onChange={handleChange} type="text" placeholder="name" className="w-full placeholder-transparent peer input-field" />
           <label htmlFor="name" className="input-label">Product Name</label>
         </div>
-        
+
         <div className="relative flex">
           <input id="location" name="location" onChange={handleChange} type="text" placeholder="location" className="w-full placeholder-transparent peer input-field" />
           <label htmlFor="location" className="input-label">Location</label>

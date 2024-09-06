@@ -1,14 +1,11 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import fruit1 from "../../assets/images/Healthy food online shopping.png";
 import fruit2 from "../../assets/images/food delivery in a craft package from hand to hand.png";
 import { ChangeEvent, FormEvent, Fragment, useState } from "react";
 import { useLoginMutation } from "../../features/api";
 import Loader from "../../components/loader/Loader";
-import { getUser } from "../../utils/useAuth";
 
 const SignIn = () => {
-  const { isLoggedIn } = getUser();
-  console.log(isLoggedIn);
 
   const [data, setdata] = useState({
     email: "",
@@ -33,15 +30,12 @@ const SignIn = () => {
     }
   };
 
-  if (isLoggedIn) {
-    <Navigate to="/userscreen/home" replace={true} />;
-  }
 
   return (
     <Fragment>
       {isLoading && <Loader />}
       <main className="flex flex-col gap-y-5 px-5 py-[2.5vh] min-h-[90vh]">
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <img src={fruit1} alt="" />
           <img src={fruit2} alt="" />
         </div>
@@ -50,8 +44,8 @@ const SignIn = () => {
           <h4 className="font-light">Find everyday items close to you!</h4>
         </div>
 
-        <form onSubmit={handleLogin} className="flex flex-col gap-y-5 mt-5">
-          <div className="flex relative">
+        <form onSubmit={handleLogin} className="flex flex-col mt-5 gap-y-5">
+          <div className="relative flex">
             <input
               id="email"
               name="email"
@@ -66,7 +60,7 @@ const SignIn = () => {
             </label>
           </div>
 
-          <div className="flex relative">
+          <div className="relative flex">
             <input
               id="password"
               name="password"
@@ -88,7 +82,7 @@ const SignIn = () => {
 
           <button
             disabled={isLoading}
-            className="rounded-md border-0 btn-outline bg-Yellow hover:bg-Yellow/90"
+            className="border-0 rounded-md btn-outline bg-Yellow hover:bg-Yellow/90"
           >
             Log In
           </button>
@@ -99,7 +93,7 @@ const SignIn = () => {
               Create an Account
             </Link>
           </div>
-          <div className="mt-5 w-full text-sm text-center">
+          <div className="w-full mt-5 text-sm text-center">
             Are you a retailer?{" "}
             <Link to="/retailer-sign-in" className="text-Gray">
               SWITCH TO REATILER ACCOUNT
