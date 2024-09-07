@@ -8,7 +8,6 @@ import { useViewCartQuery } from "@/features/api";
 import LoadingComponent from "@/components/LoadingComponent";
 import ErrorComponent from "@/components/ErrorComponent";
 
-
 const Inventory = () => {
   const dispatch = useDispatch()
   const { isInventoryToggled } = useSelector((state: RootState) => state.modalToggler)
@@ -47,48 +46,19 @@ const Inventory = () => {
           {
             isSuccess && (
               <div className="space-y-3 overflow-y-scroll h-[84%] p-2 mt-5 no-scrollbar">
-                <InventoryItemComponent product={{
-                  title: "Raid Insecticide",
-                  shop: "Shoprite ICM",
-                  location: "Obafemi Awolowo Way, Alausa, Ojodu ",
-                  price: 1500,
-                  image: ""
-                }} />
-                <InventoryItemComponent product={{
-                  title: "Raid Insecticide",
-                  shop: "Shoprite ICM",
-                  location: "Obafemi Awolowo Way, Alausa, Ojodu ",
-                  price: 1500,
-                  image: ""
-                }} />
-                <InventoryItemComponent product={{
-                  title: "Raid Insecticide",
-                  shop: "Shoprite ICM",
-                  location: "Obafemi Awolowo Way, Alausa, Ojodu ",
-                  price: 1500,
-                  image: ""
-                }} />
-                <InventoryItemComponent product={{
-                  title: "Raid Insecticide",
-                  shop: "Shoprite ICM",
-                  location: "Obafemi Awolowo Way, Alausa, Ojodu ",
-                  price: 1500,
-                  image: ""
-                }} />
-                <InventoryItemComponent product={{
-                  title: "Raid Insecticide",
-                  shop: "Shoprite ICM",
-                  location: "Obafemi Awolowo Way, Alausa, Ojodu ",
-                  price: 1500,
-                  image: ""
-                }} />
-                <InventoryItemComponent product={{
-                  title: "Raid Insecticide",
-                  shop: "Shoprite ICM",
-                  location: "Obafemi Awolowo Way, Alausa, Ojodu ",
-                  price: 1500,
-                  image: ""
-                }} />
+                {
+                  data.map((item:any) => (
+                    <InventoryItemComponent key={item.id} product={{
+                      id: item.inventory_item.id,
+                      title: item.inventory_item.name,
+                      shop: item.inventory_item.location,
+                      location: item.inventory_item.location,
+                      price: item.inventory_item.price,
+                      image: item.inventory_item.image_url
+                    }} />
+                  ))
+                }
+
               </div>
             )
           }

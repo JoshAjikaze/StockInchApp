@@ -30,6 +30,8 @@ type TGetUserProfileResponse = {
     name: string,
     email: string,
     role: string,
+    phone_number: number, 
+    address: string,
 }
 
 

@@ -160,12 +160,6 @@ const AddItem = () => {
           </div>
         </div>
 
-        <div>
-          {Product.name}
-          {Product.price}
-          {Product.description}
-        </div>
-
         <button className="border-0 rounded-md btn-outline bg-Yellow hover:bg-Yellow/90">
           Save
         </button>

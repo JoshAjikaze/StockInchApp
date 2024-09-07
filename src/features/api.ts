@@ -13,8 +13,8 @@ export const api = createApi({
         prepareHeaders: async (headers) => {
 
             try {
-                const token = userToken || "";
-                if (token != null && token !== "") {
+                const token = userToken;
+                if (token) {
                     headers.set('Authorization', `Bearer ${token}`)
                 }
                 return headers;
@@ -25,7 +25,7 @@ export const api = createApi({
         }
 
     }),
-    tagTypes: ['Cart'],
+    tagTypes: ['Cart', 'Inventory'],
 
     endpoints: (builder) => ({
 
@@ -47,6 +47,16 @@ export const api = createApi({
 
         getUserProfile: builder.query<TGetUserProfileResponse, unknown>({
             query: () => `/accounts/api/profile/`,
+        }),
+
+        // Update Retailer Profile 
+
+        updateRetailerProfile: builder.mutation({
+            query: (data) => ({
+                url: `/retailer-panel/profile/edit/`,
+                method: 'PUT',
+                body: data,
+            }),
         }),
 
         getProducts: builder.query({
@@ -72,8 +82,25 @@ export const api = createApi({
                 formData.append('inventory_item_id', id)
 
                 return ({
-                    url: "shopper-panel/cart/add/",
+                    url: "/shopper-panel/cart/add/",
                     method: "POST",
+                    body: formData
+                })
+            },
+            invalidatesTags: [
+                { type: 'Cart', id: 'All' }
+            ]
+        }),
+
+        removeFromCart: builder.mutation({
+            query: (id) => {
+
+                const formData = new FormData();
+                formData.append('inventory_item_id', id)
+
+                return ({
+                    url: "/shopper-panel/cart/remove/",
+                    method: "DELETE",
                     body: formData
                 })
             },
@@ -84,6 +111,9 @@ export const api = createApi({
 
         viewCart: builder.query({
             query: () => `/shopper-panel/cart/`,
+            providesTags: [
+                { type: 'Cart', id: 'All' }
+              ]
         }),
 
         fetchSingleProduct: builder.query({
@@ -118,6 +148,9 @@ export const api = createApi({
                 method: 'POST',
                 body: data,
             }),
+            invalidatesTags : [{
+                type: 'Inventory', id: 'All'
+            }]
         }),
 
         updateInventoryItem: builder.mutation<TUpdateInventoryItemResponse, TUpdateInventoryItemRequest>({
@@ -126,6 +159,9 @@ export const api = createApi({
                 method: 'PUT',
                 body: data,
             }),
+            invalidatesTags: [
+                { type: 'Inventory', id: 'All' }
+            ]
         }),
 
         deleteInventoryItem: builder.mutation<TDeleteInventoryItemResponse, any>({
@@ -133,10 +169,18 @@ export const api = createApi({
                 url: `retailer-panel/inventory/${item_id}`,
                 method: 'DELETE',
             }),
+            invalidatesTags: [
+                { type: 'Inventory', id: 'All' }
+            ]
         }),
 
         listInventoryItems: builder.query<TListInventoryItemsResponse, unknown>({
             query: () => '/inventory/api/list/',
+            providesTags: [
+                {
+                    type: 'Inventory', id: 'All'
+                }
+            ]
         }),
 
         // Shoppers Endpoints
@@ -177,6 +221,10 @@ export const {
     // add To cart
     useAddToCartMutation,
 
+    // remove from cart
+
+    useRemoveFromCartMutation,
+
     // view Cart
     useViewCartQuery,
 
@@ -185,5 +233,8 @@ export const {
 
     //List Inventory Retailer
     useListInventoryQuery,
+
+    // update retailer profile 
+    useUpdateRetailerProfileMutation,
 
 } = api

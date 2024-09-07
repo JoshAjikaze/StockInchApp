@@ -24,7 +24,10 @@ const SignIn = () => {
     try {
       const response = await trigger(data).unwrap();
       localStorage.setItem("token", JSON.stringify(response.access));
-      navigate("/userscreen/home");
+      setTimeout(() => {
+        navigate("/userscreen/home");
+        navigate(0)
+      }, 500);    
     } catch (error) {
       console.error(error);
     }

@@ -7,10 +7,8 @@ import Loader from '@/components/loader/Loader';
 import ProductComponent from '@/retailer/products/ProductComponent';
 const RetailerHomePage = () => {
 
-    const { isFetching, isError, isSuccess, data } = useViewDashboardQuery("")
+    const { isFetching, data } = useViewDashboardQuery("")
     const { isFetching: inventoryFetching, isSuccess: InventorySuccess, data: InventoryData } = useListInventoryQuery("")
-
-    console.log(isFetching, isError, isSuccess)
 
     if (isFetching) {
         return <Loader />
@@ -18,7 +16,7 @@ const RetailerHomePage = () => {
 
     return (
         <div className="">
-            <div className="sticky top-0 flex items-center mb-5 text-xl font-semibold gap-x-5 text-Gray z-[100] bg-white p-5">
+            <div className="flex items-center mb-5 text-xl font-semibold gap-x-5 text-Gray z-[100] bg-white p-5">
                 <img
                     src="https://placehold.co/100x100"
                     alt="image"
@@ -30,7 +28,7 @@ const RetailerHomePage = () => {
             </div>
 
             {/* Inventory Items */}
-            <section className="sticky flex items-center justify-between p-5 gap-x-5 top-20 z-[99] bg-white">
+            <section className="sticky flex items-center justify-between p-5 gap-x-5 top-0 z-[99] bg-white">
                 <div className="basis-1/2 shadow-[0px_0px_5px_0px_rgba(0,0,0,0.25)] rounded-lg p-3 h-[150px] flex flex-col justify-between linear-pattern-2">
                     <div className="flex justify-end">
                         <img src={warehouse} alt="" className='size-10' />

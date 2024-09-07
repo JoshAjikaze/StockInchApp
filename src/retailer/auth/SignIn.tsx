@@ -6,7 +6,9 @@ import { useLoginMutation } from "../../features/api";
 import Loader from "../../components/loader/Loader";
 
 const RetailerSignIn = () => {
-  
+
+  const navigate = useNavigate();
+
   const [data, setdata] = useState({
     email: "",
     password: "",
@@ -18,14 +20,16 @@ const RetailerSignIn = () => {
 
   const [trigger, { isLoading }] = useLoginMutation();
 
-  const navigate = useNavigate();
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const response = await trigger(data).unwrap();
       console.log(response);
       localStorage.setItem("token", JSON.stringify(response.access));
-      navigate("/retailer-screen/home");
+      setTimeout(() => {
+        navigate("/retailer-screen/home");
+        navigate(0)
+      }, 500);
     } catch (error) {
       console.error(error);
     }
@@ -53,7 +57,7 @@ const RetailerSignIn = () => {
               placeholder="Name"
               className="w-full placeholder-transparent peer input-field"
               required
-              />
+            />
             <label htmlFor="email" className="input-label">
               Email Address
             </label>

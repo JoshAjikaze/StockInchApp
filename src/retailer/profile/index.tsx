@@ -2,11 +2,16 @@ import { useState, Fragment } from "react"
 import BackButton from "../../components/BackButton"
 import { Link } from "react-router-dom"
 import { useLogout } from "../../utils/useLogout";
+import { useGetUserProfileQuery } from "@/features/api";
 
 const RetailerProfile = () => {
   const handleLogout = useLogout('/retailer-sign-in');
 
   const [updateProfileState, setUpdateProfileState] = useState<boolean>(false)
+
+  const { data, isFetching } = useGetUserProfileQuery("")
+  console.log(data);
+
 
   return (
     <div className="p-5">
@@ -123,25 +128,25 @@ const RetailerProfile = () => {
 
               <form action="" className="flex flex-col gap-y-5 px-5 py-[2.5vh] w-full">
                 <div className="relative flex">
-                  <input id="email" type="text" placeholder="Name" className="w-full placeholder-transparent cursor-not-allowed peer input-field" />
+                  <input id="email" type="text" defaultValue={data?.name} placeholder="Name" className="w-full placeholder-transparent cursor-not-allowed peer input-field" />
+                  <label htmlFor="email" className="input-label">Name</label>
+                </div>
+                <div className="relative flex">
+                  <input id="email" type="text" defaultValue={data?.email} placeholder="Name" className="w-full placeholder-transparent cursor-not-allowed peer input-field" />
                   <label htmlFor="email" className="input-label">Email Address</label>
                 </div>
                 <div className="relative flex">
-                  <input id="email" type="text" placeholder="Name" className="w-full placeholder-transparent cursor-not-allowed peer input-field" />
-                  <label htmlFor="email" className="input-label">Email Address</label>
+                  <input id="phone" type="number" defaultValue={data?.phone_number} inputMode="numeric" placeholder="phone" className="w-full placeholder-transparent cursor-not-allowed peer input-field" />
+                  <label htmlFor="phone" className="input-label">Phone Number</label>
                 </div>
                 <div className="relative flex">
-                  <input id="email" type="text" placeholder="Name" className="w-full placeholder-transparent cursor-not-allowed peer input-field" />
-                  <label htmlFor="email" className="input-label">Email Address</label>
+                  <input id="address" type="text" placeholder="address" className="w-full placeholder-transparent cursor-not-allowed peer input-field" />
+                  <label htmlFor="address" className="input-label"> Address</label>
                 </div>
-                <div className="relative flex">
-                  <input id="email" type="text" placeholder="Name" className="w-full placeholder-transparent cursor-not-allowed peer input-field" />
-                  <label htmlFor="email" className="input-label">Email Address</label>
-                </div>
-                <div className="relative flex">
+                {/* <div className="relative flex">
                   <input id="email" type="text" placeholder="Name" className="w-full placeholder-transparent cursor-not-allowed peer input-field" readOnly />
                   <label htmlFor="email" className="input-label">24/03/1999</label>
-                </div>
+                </div> */}
                 <div className="flex justify-center w-full my-5">
                   <button className="yellow-btn">Save Changes</button>
                 </div>
