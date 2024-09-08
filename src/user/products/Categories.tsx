@@ -13,7 +13,7 @@ const Categories = () => {
   }
 
   const { isSuccess, isFetching, isError, data } = useGetProductsByCategoryQuery(id)
-  console.log(data)
+  console.log(data, isFetching, isError)
 
 
   return (

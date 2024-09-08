@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { toggle } from "../../features/slices/togglerSlices";
 import { RootState } from "../../features/store"
 import { Link } from "react-router-dom";
-import { CategoriesData } from "../home/UserHome";
+// import { CategoriesData } from "../home/UserHome";
 import { useGetCategoriesQuery } from "@/features/api";
 
 const Allcategories = () => {
@@ -12,6 +12,7 @@ const Allcategories = () => {
     
     const { isSuccess:CategoriesSuccess, isFetching :CategoriesFetching, isError:CategoriesError, data: categoriesData } = useGetCategoriesQuery("")
 
+    console.log(CategoriesSuccess, CategoriesFetching, CategoriesError)
 
     return (
         <div className={`${isToggled ? "left-0" : "-left-full"} fixed z-50 top-0 w-full bg-white h-full transition-all duration-300 pt-5`}>
@@ -29,7 +30,7 @@ const Allcategories = () => {
 
             <div className="my-10 p-5 h-[70vh] overflow-y-scroll no-scrollbar">
                 {
-                    categoriesData?.map((item, Idx) => (
+                    categoriesData?.map((item:any, Idx:number) => (
                         <Link to={`/categories/${item.id}`} onClick={() => dispatch(toggle())} key={Idx} className="relative flex items-center text-black no-underline border gap-x-5">
                             <p>
                                 <img src={item.icon || "https://placehold.co/30x30"} alt="" className="size-12" />

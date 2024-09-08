@@ -1,38 +1,91 @@
-import { useState, Fragment } from "react"
+import { useState, Fragment, FormEvent, ChangeEvent, useEffect } from "react"
 import BackButton from "../../components/BackButton"
 import { Link } from "react-router-dom"
-import { useLogout } from "../../utils/useLogout"
-import { useGetUserProfile } from "../../utils/useGetUserProfile"
-import Loader from "../../components/loader/Loader"
+import { useLogout } from "../../utils/useLogout";
+import { useGetUserProfileQuery, useUpdateRetailerProfileMutation } from "@/features/api";
+import { toast } from "react-toastify";
 
 const Profile = () => {
-  const handleLogout = useLogout('/sign-in');
-
+  
+  const { data, isSuccess } = useGetUserProfileQuery("")
+  
+  const handleLogout = useLogout('/retailer-sign-in');
+  console.log(data)
 
   const [updateProfileState, setUpdateProfileState] = useState<boolean>(false)
+
+  const [ProfileState, setProfileState] = useState({
+    name: data?.name,
+    email: data?.email,
+    phone_number: data?.phone_number,
+    address: data?.address,
+    profile_picture: data?.profile_picture,
+  })
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement | any>) => {
+    const { name, value, type, files } = event.target;
+
+    if (type === 'file') {
+      if (files)
+        if (files[0].size < 50_00_000) {
+          setProfileState(ProfileState => ({
+            ...ProfileState,
+            profile_picture: files[0]
+          }))
+        } else {
+          toast.error("File too large. Maximum size is 5MB.", {
+            autoClose: 5_000,
+          })
+        }
+
+    } else {
+      setProfileState(ProfileState => ({
+        ...ProfileState,
+        [name]: value
+      }));
+    }
+  };
+
+  console.log(ProfileState)
+
   
-  const { userProfile, isLoading, error } = useGetUserProfile()
 
-  console.log(userProfile, error)
+  const [updateProfile, {status}] = useUpdateRetailerProfileMutation()
 
-  const [userProfileState] = useState(
-    {
-      "name": "Ajiwojuolorun Joshua",
-      "phone_number": null,
-      "email": "ajiwojuolorunjoshua@gmail.com",
-      "address": null,
-      "profile_picture": null
+  useEffect(() => {
+    
+  if(status == 'fulfilled'){
+    toast.success("Profile Updated ✔️")
+    setUpdateProfileState(false)
   }
-  )
 
-  if(isLoading){
-    return(
-       <Loader /> 
-    )
-}
+  if(isSuccess){
+    setProfileState({
+      name: data?.name,
+      email: data?.email,
+      phone_number: data?.phone_number,
+      address: data?.address,
+      profile_picture: data?.profile_picture,
+    })
+  }
+
+  }, [status, isSuccess])
+  
+
+  async function UpdateProfileFn(e: FormEvent<HTMLFormElement>) {
+
+    e.preventDefault()
+
+    try {
+      await updateProfile(ProfileState)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
 
   return (
-    <div>
+    <div className="p-5">
       {
         !updateProfileState ?
           <Fragment>
@@ -43,8 +96,8 @@ const Profile = () => {
 
             <div className="bg-black/0 min-h-[60vh] mt-16 flex flex-col items-center p-5">
               <div className="flex flex-col items-center gap-y-5">
-                <img src="https://placehold.co/100x100" alt="" className="rounded-full size-20" />
-                <p className="text-xl font-semibold text-Gray">{userProfileState?.name}</p>
+                <img src={data?.profile_picture || "https://placehold.co/100x100"} alt="" className="rounded-full size-20" />
+                <p className="text-xl font-semibold text-Gray">{data?.name}</p>
               </div>
 
               <section className="relative w-full md:w-[500px] space-y-5 mt-10 ">
@@ -58,7 +111,7 @@ const Profile = () => {
                   </p>
                   <div>
                     <p className="font-medium">Address</p>
-                    <p className="text-Gray">Not Available</p>
+                    <p className="text-Gray">{data?.address || "Unknown Address"} </p>
                   </div>
                   <span className="absolute right-3">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 stroke-LightGray">
@@ -78,7 +131,7 @@ const Profile = () => {
                     </p>
                     <div>
                       <p className="font-medium">Phone No</p>
-                      <p className="text-Gray">Not Available</p>
+                      <p className="text-Gray">{data?.phone_number} </p>
                     </div>
 
                   </div>
@@ -93,7 +146,7 @@ const Profile = () => {
                     </p>
                     <div>
                       <p className="font-medium">Email Address</p>
-                      <p className="text-Gray">{userProfileState?.email}</p>
+                      <p className="text-Gray">{data?.email} </p>
                     </div>
 
                   </div>
@@ -131,45 +184,51 @@ const Profile = () => {
               </svg>
             </button>
 
-            <div className="flex items-center justify-center w-full my-20">
-              <div className="relative flex items-center justify-center bg-white border-2 border-solid rounded-full border-Yellow size-22">
-                <img src="https://placehold.co/100x100" alt="" className="rounded-full" />
-                <button className="absolute flex items-center justify-center p-2 bg-white rounded-full shadow-md bottom-3 -right-4 default-btn">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5 fill-none stroke-Gray">
-                    <path d="m2.695 14.762-1.262 3.155a.5.5 0 0 0 .65.65l3.155-1.262a4 4 0 0 0 1.343-.886L17.5 5.501a2.121 2.121 0 0 0-3-3L3.58 13.419a4 4 0 0 0-.885 1.343Z" />
-                  </svg>
-                </button>
-              </div>
-            </div>
+
 
             <div className="flex">
 
-              <form action="" className="flex flex-col gap-y-5 px-5 py-[2.5vh] w-full">
+              <form onSubmit={UpdateProfileFn} action="" className="flex flex-col gap-y-5 px-5 py-[2.5vh] w-full">
+
+                <div className="flex items-center justify-center w-full my-20">
+
+                  <div className="relative flex items-center justify-center bg-white border-2 border-solid rounded-full border-Yellow size-22">
+
+                    <img src={ProfileState?.profile_picture || data?.profile_picture || "https://placehold.co/100x100"} alt="" className="rounded-full size-24" />
+
+                    <label className="absolute flex items-center justify-center p-2 bg-white rounded-full shadow-md bottom-3 -right-4 default-btn">
+                      <input name="profile_picture" onChange={handleChange} type="file" accept="image/jpg, image/png" className="hidden" />
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5 fill-none stroke-Gray">
+                        <path d="m2.695 14.762-1.262 3.155a.5.5 0 0 0 .65.65l3.155-1.262a4 4 0 0 0 1.343-.886L17.5 5.501a2.121 2.121 0 0 0-3-3L3.58 13.419a4 4 0 0 0-.885 1.343Z" />
+                      </svg>
+                    </label>
+
+                  </div>
+
+                </div>
+
                 <div className="relative flex">
-                  <input id="email" type="text" placeholder="Name" className="w-full placeholder-transparent cursor-not-allowed peer input-field" />
+                  <input id="email" type="text" name="name" onChange={handleChange} defaultValue={data?.name} placeholder="Name" className="w-full placeholder-transparent peer input-field" />
+                  <label htmlFor="email" className="input-label">Name</label>
+                </div>
+                <div className="relative flex">
+                  <input id="email" type="text" name="email" onChange={handleChange} defaultValue={data?.email} placeholder="Name" disabled className="w-full placeholder-transparent cursor-not-allowed peer input-field" />
                   <label htmlFor="email" className="input-label">Email Address</label>
                 </div>
                 <div className="relative flex">
-                  <input id="email" type="text" placeholder="Name" className="w-full placeholder-transparent cursor-not-allowed peer input-field" />
-                  <label htmlFor="email" className="input-label">Email Address</label>
+                  <input id="phone" type="number" name="phone_number" onChange={handleChange} defaultValue={data?.phone_number} inputMode="numeric" placeholder="phone" className="w-full placeholder-transparent peer input-field" />
+                  <label htmlFor="phone" className="input-label">Phone Number</label>
                 </div>
                 <div className="relative flex">
-                  <input id="email" type="text" placeholder="Name" className="w-full placeholder-transparent cursor-not-allowed peer input-field" />
-                  <label htmlFor="email" className="input-label">Email Address</label>
+                  <input id="address" type="text" name="address" onChange={handleChange} defaultValue={data?.address} placeholder="address" className="w-full placeholder-transparent peer input-field" />
+                  <label htmlFor="address" className="input-label"> Address</label>
                 </div>
-                <div className="relative flex">
-                  <input id="email" type="text" placeholder="Name" className="w-full placeholder-transparent cursor-not-allowed peer input-field" />
-                  <label htmlFor="email" className="input-label">Email Address</label>
-                </div>
-                <div className="relative flex">
-                  <input id="email" type="text" placeholder="Name" className="w-full placeholder-transparent cursor-not-allowed peer input-field" readOnly />
-                  <label htmlFor="email" className="input-label">24/03/1999</label>
-                </div>
+
                 <div className="flex justify-center w-full my-5">
                   <button className="yellow-btn">Save Changes</button>
                 </div>
-              </form>
 
+              </form>
 
             </div>
 

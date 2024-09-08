@@ -30,9 +30,11 @@ type TGetUserProfileResponse = {
     name: string,
     email: string,
     role: string,
-    phone_number: number, 
+    phone_number: number | undefined, 
     address: string,
-}
+    password: string,
+    profile_picture: string,
+}   
 
 
 // Retailers Inventory MGT

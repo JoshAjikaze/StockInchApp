@@ -1,4 +1,5 @@
 // import { Link } from 'react-router-dom';
+import { useGetUserProfile } from '@/utils/useGetUserProfile';
 import inventory from '../../assets/icons/Todo List.png';
 import warehouse from '../../assets/icons/Warehouse.png';
 // import { CategoriesData } from "../../user/home/UserHome";
@@ -7,6 +8,7 @@ import Loader from '@/components/loader/Loader';
 import ProductComponent from '@/retailer/products/ProductComponent';
 const RetailerHomePage = () => {
 
+    const { userProfile } = useGetUserProfile()
     const { isFetching, data } = useViewDashboardQuery("")
     const { isFetching: inventoryFetching, isSuccess: InventorySuccess, data: InventoryData } = useListInventoryQuery("")
 
@@ -18,12 +20,12 @@ const RetailerHomePage = () => {
         <div className="">
             <div className="flex items-center mb-5 text-xl font-semibold gap-x-5 text-Gray z-[100] bg-white p-5">
                 <img
-                    src="https://placehold.co/100x100"
+                    src={userProfile?.profile_picture || "https://placehold.co/100x100"}
                     alt="image"
                     className="rounded-full size-12"
                 />
                 <p>
-                    Welcome ! <span>👋</span>
+                    {userProfile?.name || "Welcome Guest"} <span>👋</span>
                 </p>
             </div>
 
@@ -58,7 +60,7 @@ const RetailerHomePage = () => {
             <p className="p-5 my-5 text-2xl font-semibold text-Gray">
                 Inventory
             </p>
-            <div className='min-h-[45vh] no-scrollbar bg-white shadow-[0px_0px_5px_0px_rgba(0,0,0,0.25)] rounded-lg pb-10 mb-10 space-y-3 p-5'>
+            <div className='min-h-[45vh] no-scrollbar bg-white shadow-[0px_0px_5px_0px_rgba(0,0,0,0.25)] rounded-lg pb-16 mb-10 space-y-3 p-5'>
                 {
                     inventoryFetching && <>Loading...</>
                 }

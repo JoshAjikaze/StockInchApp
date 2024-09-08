@@ -75,7 +75,7 @@ const UserHome = () => {
             {/* name tag menu */}
             <div className="flex items-center mb-5 text-xl font-semibold gap-x-5 text-Gray">
                 <img
-                    src="https://placehold.co/100x100"
+                    src={userProfile?.profile_picture || "https://placehold.co/100x100"}
                     alt="image"
                     className="rounded-full size-12"
                 />

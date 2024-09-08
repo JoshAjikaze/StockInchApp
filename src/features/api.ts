@@ -25,7 +25,7 @@ export const api = createApi({
         }
 
     }),
-    tagTypes: ['Cart', 'Inventory'],
+    tagTypes: ['Cart', 'Inventory', 'Profile'],
 
     endpoints: (builder) => ({
 
@@ -47,16 +47,32 @@ export const api = createApi({
 
         getUserProfile: builder.query<TGetUserProfileResponse, unknown>({
             query: () => `/accounts/api/profile/`,
+            providesTags: [{
+                type: 'Profile', id: 'All'
+            }]
         }),
 
         // Update Retailer Profile 
 
         updateRetailerProfile: builder.mutation({
-            query: (data) => ({
-                url: `/retailer-panel/profile/edit/`,
-                method: 'PUT',
-                body: data,
-            }),
+            query: (body) => {
+
+                const formdata = new FormData();
+
+                for (const key in body) {
+                    formdata.append(key, body[key]);
+                }
+
+                return ({
+                    url: `/retailer-panel/profile/edit/`,
+                    method: 'PATCH',
+                    body: formdata
+                })
+            },
+            invalidatesTags: [{
+                type: 'Profile', id: 'All'
+            }]
+
         }),
 
         getProducts: builder.query({
@@ -113,7 +129,7 @@ export const api = createApi({
             query: () => `/shopper-panel/cart/`,
             providesTags: [
                 { type: 'Cart', id: 'All' }
-              ]
+            ]
         }),
 
         fetchSingleProduct: builder.query({
@@ -136,10 +152,16 @@ export const api = createApi({
 
         ListInventory: builder.query({
             query: () => `/retailer-panel/inventory/`,
+            providesTags: [{
+                type: 'Inventory', id: 'All'
+            }]
         }),
 
         viewDashboard: builder.query({
             query: () => `/retailer-panel/dashboard/`,
+            providesTags: [{
+                type: 'Inventory', id: 'All'
+            }]
         }),
 
         createInventoryItem: builder.mutation<TCreateInventoryItemResponse, TCreateInventoryItemRequest>({
@@ -148,14 +170,14 @@ export const api = createApi({
                 method: 'POST',
                 body: data,
             }),
-            invalidatesTags : [{
+            invalidatesTags: [{
                 type: 'Inventory', id: 'All'
             }]
         }),
 
         updateInventoryItem: builder.mutation<TUpdateInventoryItemResponse, TUpdateInventoryItemRequest>({
             query: (data) => ({
-                url: `/inventory/api/update/${data.item_id}`,
+                url: `/inventory/api/update/${data.item_id}/`,
                 method: 'PUT',
                 body: data,
             }),
@@ -166,7 +188,7 @@ export const api = createApi({
 
         deleteInventoryItem: builder.mutation<TDeleteInventoryItemResponse, any>({
             query: (item_id) => ({
-                url: `retailer-panel/inventory/${item_id}`,
+                url: `/retailer-panel/inventory/${item_id}/`,
                 method: 'DELETE',
             }),
             invalidatesTags: [

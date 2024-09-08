@@ -35,7 +35,7 @@ const ProductComponent = ({ product, componentType }: TProductComponent) => {
       </div>
 
       <div className="flex items-center justify-between p-2 rounded-b-lg bg-LightGray">
-        <p>₦{product.price}</p>
+        <p className="text-sm font-medium">₦{product.price}</p>
         <CheckBox />
       </div>
     </div>

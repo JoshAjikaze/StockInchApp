@@ -69,6 +69,7 @@ const AddItem = () => {
         transition: Bounce,
         theme: "dark"
       })
+      dispatch(addItemToggle())
     }
     
   }, [isSuccess])
