@@ -88,8 +88,15 @@ const RetailerHomePage = () => {
                 }
 
                 {
-                    InventoryData.length < 1 && <h1 className='text-xl font-light text-center'>No Items In Inventory</h1>
+                    InventorySuccess && (
+                        <>
+                            {
+                                InventoryData?.length < 1 && <h1 className='text-xl font-light text-center'>No Items In Inventory</h1>
+                            }
+                        </>
+                    )
                 }
+
             </div>
 
         </div>
