@@ -41,7 +41,7 @@ const Inventory = () => {
 
           <div className="flex items-center justify-between font-medium">
             <p>Items <span className="font-semibold">({data?.length || 0})</span></p>
-            <p>Total: N<span>15,000</span></p>
+            <p className="invisible">Total: N<span>15,000</span></p>
           </div>
           {
             isSuccess && (

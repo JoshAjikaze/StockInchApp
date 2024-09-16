@@ -9,7 +9,7 @@ const EditItem = () => {
 
   const { id } = useParams()
   const navigate = useNavigate()
-  
+
   const { data, isFetching, isError, isSuccess } = useFetchSingleProductQuery(id)
   const { data: CategoriesData, isFetching: CategoriesFetching, isSuccess: CategoriesSuccess, error: CategoriesError } = useGetCategoriesQuery("")
 
@@ -58,7 +58,7 @@ const EditItem = () => {
     }
   };
 
-  const [trigger, { isSuccess: InventoryUpdateSuccess }] = useUpdateInventoryItemMutation()
+  const [trigger, { isSuccess: InventoryUpdateSuccess, isLoading: InventoryLoading }] = useUpdateInventoryItemMutation()
 
   const UpdateItemFn = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -75,14 +75,14 @@ const EditItem = () => {
 
   useEffect(() => {
 
-    if(InventoryUpdateSuccess){
+    if (InventoryUpdateSuccess) {
       toast.success("Item Updated. 👍")
       navigate("/retailer-screen/home")
 
     }
 
   }, [InventoryUpdateSuccess])
-  
+
 
 
   return (
@@ -183,8 +183,16 @@ const EditItem = () => {
                 <label htmlFor="email" className="input-label">Description</label>
               </div>
             </div>
-            <button className="border-0 rounded-md btn-outline bg-Yellow hover:bg-Yellow/90">
-              Save
+
+            <button disabled={InventoryLoading} className="rounded-md order-0 btn-outline bg-Yellow hover:bg-Yellow/90">
+              {InventoryLoading ? <>
+                <svg className={`mr-3 -ml-1 size-5 text-bica_blue animate-spin `} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+              </> :
+                "Save"
+              }
             </button>
 
           </form>

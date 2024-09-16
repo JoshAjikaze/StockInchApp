@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux"
 import CategoryComponent from "../../components/CategoryComponent"
 import { searchToggle, toggle } from "../../features/slices/togglerSlices"
-import { categoryToggle } from "../../features/slices/togglerSlices"
+// import { categoryToggle } from "../../features/slices/togglerSlices"
 
 // import { useGetUserProfileQuery } from "../../features/api"
 import { useGetUserProfile } from "../../utils/useGetUserProfile"
@@ -94,11 +94,13 @@ const UserHome = () => {
                     className="hidden p-4 px-10 border-transparent border-solid rounded-md outline-none bg-LightGray basis-full"
                 />
 
-                <div onClick={() => dispatch(searchToggle())} className="flex items-center pl-10 rounded-lg basis-full bg-LightGray text-Gray">
+                {/* <div onClick={() => dispatch(searchToggle())} className="flex items-center pl-10 rounded-lg basis-full bg-LightGray text-Gray"> */}
+                <div className="flex items-center pl-10 rounded-lg basis-full bg-LightGray text-Gray">
                     Search Products, Brands...
                 </div>
 
-                <button onClick={() => dispatch(categoryToggle())} className="flex items-center justify-center p-4 px-4 border-solid rounded-md size-14 bg-Yellow border-Yellow">
+                {/* <button onClick={() => dispatch(categoryToggle())} className="flex items-center justify-center p-4 px-4 border-solid rounded-md size-14 bg-Yellow border-Yellow"> */}
+                <button className="flex items-center justify-center p-4 px-4 border-solid rounded-md size-14 bg-Yellow border-Yellow">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"

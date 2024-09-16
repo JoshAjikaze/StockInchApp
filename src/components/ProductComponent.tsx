@@ -37,7 +37,7 @@ const ProductComponent = ({ product, componentType }: TProductComponent) => {
 
       <div className="flex items-center justify-between p-2 rounded-b-lg bg-LightGray">
         <p className="text-sm font-medium">₦{product.price}</p>
-        <CheckBox />
+        <div className="invisible"><CheckBox /></div>
       </div>
     </div>
   );
