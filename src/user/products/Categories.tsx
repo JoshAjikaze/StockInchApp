@@ -49,7 +49,7 @@ const Categories = () => {
                       image: item.image_url,
                       shop: "Shoprite",
                       title: item.name,
-                      loaction: item.location,
+                      location: item.location,
                       price: item.price
                     }} componentType={1} />
                   )

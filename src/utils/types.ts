@@ -4,6 +4,7 @@ type TRegisterRequest = {
     name: string,
     email: string,
     password: string,
+    address: string,
     role: string,
 }
 
@@ -53,7 +54,7 @@ type TCreateInventoryItemRequest = {
     price: number,
     category: string,
     location: string,
-    image_url: unknown
+    image: string,
 }
 
 type TCreateInventoryItemResponse = {
@@ -65,18 +66,19 @@ type TCreateInventoryItemResponse = {
         price: number,
         category: string,
         location: string,
+        image: string,
         image_url: string
     }
 }
 
 type TUpdateInventoryItemRequest = {
-    item_id: number
+    id: number
     name: string,
     description: string,
     price: number,
     category: string,
     location: string,
-    image_url: unknown
+    image: string,
 }
 
 type TUpdateInventoryItemResponse = {
@@ -88,6 +90,7 @@ type TUpdateInventoryItemResponse = {
         price: number,
         category: string,
         location: string,
+        image: string,
         image_url: string
     }
 }

@@ -11,7 +11,7 @@ type TProduct = {
   image: string;
   shop: string;
   title: string;
-  loaction: string;
+  location: string;
   price: number;
 };
 
@@ -21,17 +21,18 @@ type TProductComponent = {
 };
 const ProductComponent = ({ product, componentType }: TProductComponent) => {
   return (
-    <div className={`${componentType == EProductComponentType.flexed ? "basis-1/2" : "min-w-[200px] inline"} border border-solid border-transparent shadow-sm`}>
-      <div className="relative w-full rounded-t-lg">
-        <Link to={`/product/${product.id}`}>
-          <img src={product.image || "https://placehold.co/147x122"} alt="" className="object-cover w-full h-full rounded-t-md" />
+    <div className={`${componentType == EProductComponentType.flexed ? "basis-1/2" : "min-w-[200px] h-[300px] inline"} border border-solid border-transparent shadow-sm`}>
+
+      <Link to={`/product/${product.id}`}>
+        <div className="relative w-full rounded-t-lg h-[190px]">
+          <img src={product.image || "https://placehold.co/147x122"} alt="" className="object-fill w-full h-[190px] rounded-t-md" />
           <p className="absolute font-medium text-white left-2 bottom-3">{product.shop}</p>
-        </Link>
-      </div>
+        </div>
+      </Link>
 
       <div className="p-2 text-Gray">
-        <p className="font-semibold">{product.title}</p>
-        <p className="text-xs text-LightGray">{product.loaction}</p>
+        <p className="font-semibold">{product.title.slice(0,20)}{product.title.length > 20 && "..."}</p>
+        <p className="text-xs text-LightGray">{product.location}</p>
       </div>
 
       <div className="flex items-center justify-between p-2 rounded-b-lg bg-LightGray">

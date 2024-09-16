@@ -1,5 +1,5 @@
 
-const ErrorComponent = ({isError, message, className}: {isError:boolean, message?:string, className?:string}) => {
+const ErrorComponent = ({isError, message, className}: {isError:any, message?:string, className?:string}) => {
     return (
         <div className={`absolute top-0 flex items-center justify-center w-full font-semibold ${className}`}>
             {

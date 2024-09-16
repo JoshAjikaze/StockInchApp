@@ -1,5 +1,4 @@
 import InventoryItemIncrement from "../../components/InventoryItemIncrement"
-import milo from '../../assets/images/milo.png'
 import BackButton from "../../components/BackButton"
 import { useParams } from "react-router-dom"
 import RecentItems from "@/components/RecentItems"
@@ -13,7 +12,7 @@ const ProductPage = () => {
 
   const { id } = useParams();
 
-  const [addToCart] = useAddToCartMutation()
+  const [addToCart, { isLoading }] = useAddToCartMutation()
 
   const { isFetching, isSuccess, isError, data } = useFetchSingleProductQuery(id)
   console.log(data)
@@ -38,7 +37,11 @@ const ProductPage = () => {
     <div className="relative h-screen bg-black/50">
 
       <div className="fixed top-0 z-40 w-full bg-black h-1/2">
-        <img src={milo} alt="" className="object-cover w-full h-full" />
+        {
+          isSuccess && (
+            <img src={data.image_url || 'https://placehold.co/200x200'} alt="" className="object-cover w-full h-full" />
+          )
+        }
       </div>
 
       <div className="absolute z-50 w-full h-screen bg-black/70">
@@ -49,12 +52,12 @@ const ProductPage = () => {
 
         <div className="p-4 min-h-[50vh] bg-white rounded-t-2xl">
           <LoadingComponent isFetching={isFetching} />
-          { isSuccess &&
+          {isSuccess &&
             <>
 
               {/* title */}
               <div className="flex items-center gap-x-5">
-                <img src={"https://placehold.co/100x100"} alt="" className="rounded-full size-12" />
+                <img src={data?.image_url || 'https://placehold.co/200x200'} alt="" className="rounded-full size-12" />
                 <p className="font-medium">{data?.owner || "unknown"}</p>
               </div>
               {/* product title and count toggler */}
@@ -74,7 +77,15 @@ const ProductPage = () => {
               </div>
               {/* add to inventory button */}
               <div className="flex justify-center my-5">
-                <button onClick={AddToCart} className="yellow-btn">Add To List</button>
+                <button disabled={isLoading} onClick={AddToCart} className="yellow-btn">{isLoading ? <>
+                  <svg className={`mr-3 -ml-1 size-5 text-bica_blue animate-spin `} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                </> :
+                  'Add To List'
+                }
+                </button>
               </div>
               {/* related items */}
               <div className="space-y-2">

@@ -8,7 +8,8 @@ export const api = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
         // baseUrl: 'https://stockinch.ng/app',
-        baseUrl: 'http://127.0.0.1:8001',
+        // baseUrl: 'http://127.0.0.1:8001',
+        baseUrl: 'https://ajikaze.pythonanywhere.com',
         headers: {},
         prepareHeaders: async (headers) => {
 
@@ -165,25 +166,42 @@ export const api = createApi({
         }),
 
         createInventoryItem: builder.mutation<TCreateInventoryItemResponse, TCreateInventoryItemRequest>({
-            query: (data) => ({
-                url: '/retailer-panel/inventory/add/',
-                method: 'POST',
-                body: data,
-            }),
-            invalidatesTags: [{
-                type: 'Inventory', id: 'All'
-            }]
-        }),
 
-        updateInventoryItem: builder.mutation<TUpdateInventoryItemResponse, TUpdateInventoryItemRequest>({
-            query: (data) => ({
-                url: `/inventory/api/update/${data.item_id}/`,
-                method: 'PUT',
-                body: data,
-            }),
+            query: (body:any) => {
+
+                const formData = new FormData();
+                for (const key in body) {
+                    formData.append(key, body[key]);
+                }
+                return ({
+                    url: "/retailer-panel/inventory/add/",
+                    method: "POST",
+                    body: formData
+                })
+            },
             invalidatesTags: [
                 { type: 'Inventory', id: 'All' }
             ]
+        }),
+
+        updateInventoryItem: builder.mutation<TUpdateInventoryItemResponse, TUpdateInventoryItemRequest>({
+            query: (body: any) => {
+
+                const formdata = new FormData();
+
+                for (const key in body) {
+                    formdata.append(key, body[key]);
+                }
+
+                return ({
+                    url: `/retailer-panel/inventory/${body.id}/`,
+                    method: 'PATCH',
+                    body: formdata
+                })
+            },
+            invalidatesTags: [{
+                type: 'Inventory', id: 'All'
+            }]
         }),
 
         deleteInventoryItem: builder.mutation<TDeleteInventoryItemResponse, any>({

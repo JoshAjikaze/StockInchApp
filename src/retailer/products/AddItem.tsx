@@ -9,12 +9,14 @@ import ErrorComponent from "@/components/ErrorComponent"
 import { Bounce, toast } from "react-toastify"
 
 
+
 const AddItem = () => {
 
   const dispatch = useDispatch()
+
   const { isAddItemToggled } = useSelector((state: RootState) => state.modalToggler)
   const { isFetching, data, isError } = useGetCategoriesQuery("")
-  
+
   const [Product, setProduct] = useState(
     {
       name: "",
@@ -22,17 +24,17 @@ const AddItem = () => {
       price: 0,
       category: "",
       location: "",
-      image_url: undefined,
+      image: "",
     }
   )
-  
-  
-  
+
+
+
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | any>) => {
-    
+
     const { name, value, type, files } = event.target;
-    
+
     if (type === 'file') {
       setProduct(Product => ({
         ...Product,
@@ -46,22 +48,22 @@ const AddItem = () => {
       }));
     }
   };
-  
-  
-  const [trigger, { isSuccess }] = useCreateInventoryItemMutation()
-  
+
+
+  const [trigger, { isSuccess, isLoading }] = useCreateInventoryItemMutation()
+
   const addItem = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    
+
     try {
       await trigger(Product).unwrap()
-      
+
     } catch (error) {
       console.log(error);
-      
+
     }
   }
-  
+
   useEffect(() => {
     if (isSuccess) {
       toast.success("Item Added Successfully ✔️", {
@@ -71,11 +73,11 @@ const AddItem = () => {
       })
       dispatch(addItemToggle())
     }
-    
+
   }, [isSuccess])
-  
+
   return (
-    <div className={` ${isAddItemToggled ? 'left-0' : '-left-[200%]'} fixed bottom-0 h-screen bg-white w-[95%] px-[2.5%] z-[100] space-y-5`}>
+    <div className={` ${isAddItemToggled ? 'left-0' : '-left-[200%]'} fixed bottom-0 h-screen bg-white w-[95%] px-[2.5%] z-[100] space-y-5 overflow-y-scroll overflow-x-hidden`}>
 
       <div className="flex items-center justify-between mt-5">
         <button onClick={() => dispatch(addItemToggle())} className="default-btn">
@@ -87,7 +89,7 @@ const AddItem = () => {
         <div />
       </div>
 
-      <form onSubmit={addItem} className="flex flex-col space-y-5">
+      <form onSubmit={addItem} className="flex flex-col pb-5 space-y-5">
 
         {/* Category Select Dropdown  */}
 
@@ -115,14 +117,14 @@ const AddItem = () => {
 
           <div className="flex items-center gap-x-5">
             <label className="flex items-center justify-center rounded-md cursor-pointer size-20 bg-Yellow">
-              <input name="image_url" onChange={handleChange} type="file" className="hidden" />
+              <input name="image" onChange={handleChange} type="file" className="hidden" />
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-12 fill-white stroke-[20px]">
                 <path fillRule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clipRule="evenodd" />
               </svg>
             </label>
 
             {/* @ts-ignore */}
-            <p className="font-semibold">{Product.image_url?.name || "Upload Image"}</p>
+            <p className="font-semibold">{Product.image?.name || "Upload Image"}</p>
 
           </div>
 
@@ -161,8 +163,15 @@ const AddItem = () => {
           </div>
         </div>
 
-        <button className="border-0 rounded-md btn-outline bg-Yellow hover:bg-Yellow/90">
-          Save
+        <button disabled={isLoading} className="rounded-md order-0 btn-outline bg-Yellow hover:bg-Yellow/90">
+          {isLoading ? <>
+            <svg className={`mr-3 -ml-1 size-5 text-bica_blue animate-spin `} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+          </> :
+            "Save"
+          }
         </button>
 
       </form>
