@@ -1,10 +1,11 @@
-import { ChangeEvent, FormEvent, Fragment, useState } from "react"
+import { ChangeEvent, FormEvent, Fragment, useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useRegisterMutation } from "../../features/api"
 import { TRegisterRequest } from "../../utils/types"
 import Loader from "../../components/loader/Loader";
 import fruit1 from "../../assets/images/Healthy food online shopping.png";
 import fruit2 from "../../assets/images/food delivery in a craft package from hand to hand.png";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
     const navigate = useNavigate()
@@ -23,24 +24,29 @@ const SignUp = () => {
         setdata({ ...data, [e.target.id]: e.target.value })
     }
 
-    const [trigger, { isLoading }] = useRegisterMutation()
+    const [trigger, { isLoading, isSuccess }] = useRegisterMutation()
 
     const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const response = await trigger(data).unwrap()
-            console.log(response)
-
-            navigate("/sign-in", {
-                state: {
-                    email: data.email,
-                    password: data.password
-                }
-            });
+            await trigger(data).unwrap()
+            
         } catch (error) {
             console.error(error)
         }
     }
+
+    useEffect(() => {
+        if (isSuccess) {
+          toast.success("User Created 👍")
+          navigate("/sign-in", {
+            state: {
+              email: data.email,
+              password: data.password
+            }
+          });
+        } else ("An Error Occured 🥺")
+      }, [isSuccess])
 
     return (<Fragment>
         {isLoading && <Loader />}
