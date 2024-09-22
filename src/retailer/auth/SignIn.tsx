@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import fruit1 from "../../assets/images/Healthy food online shopping.png";
 import fruit2 from "../../assets/images/food delivery in a craft package from hand to hand.png";
-import { ChangeEvent, FormEvent, useState, Fragment } from "react";
+import { ChangeEvent, FormEvent, useState, Fragment, useEffect } from "react";
 import { useLoginMutation } from "../../features/api";
 import Loader from "../../components/loader/Loader";
 import { toast } from "react-toastify";
@@ -22,7 +22,7 @@ const RetailerSignIn = () => {
     setdata({ ...data, [e.target.id]: e.target.value });
   };
 
-  const [trigger, { isLoading }] = useLoginMutation();
+  const [trigger, { isLoading, error, isSuccess }] = useLoginMutation();
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,14 +30,26 @@ const RetailerSignIn = () => {
       const response = await trigger(data).unwrap();
       console.log(response);
       localStorage.setItem("token", JSON.stringify(response.access));
-      setTimeout(() => {
-        navigate("/retailer-screen/home");
-        navigate(0)
-      }, 500);
     } catch (error: any) {
       toast.error(error);
     }
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      setTimeout(() => {
+        navigate("/retailer-screen/home");
+        navigate(0)
+      }, 500);
+    }
+
+    if (error) {
+      console.log(error)
+      // @ts-ignore
+      toast.error(error?.data.error)
+    }
+  }, [isSuccess, error])
+
 
 
   return (
@@ -81,7 +93,7 @@ const RetailerSignIn = () => {
               defaultValue={data?.password}
               required
             />
-            
+
             <button className="absolute bg-transparent border-0 right-3 top-3" onClick={() => setShowPassword(!showPassword)} type="button">
               {
                 showPassword ?
@@ -99,7 +111,7 @@ const RetailerSignIn = () => {
                   </>
               }
             </button>
-            
+
             <label htmlFor="password" className="input-label">
               Password
             </label>

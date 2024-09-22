@@ -8,7 +8,7 @@ const RecentItems = () => {
     const { isSuccess, isFetching, isError, data } = useGetProductsQuery("")
 
     return (
-        <div className="flex overflow-x-scroll flex-nowrap gap-x-5 no-scrollbar">
+        <div className="z-50 flex overflow-x-scroll flex-nowrap gap-x-5 no-scrollbar">
 
             <LoadingComponent isFetching={isFetching} />
 

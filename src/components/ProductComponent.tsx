@@ -21,7 +21,7 @@ type TProductComponent = {
 };
 const ProductComponent = ({ product, componentType }: TProductComponent) => {
   return (
-    <div className={`${componentType == EProductComponentType.flexed ? "basis-1/2" : "min-w-[200px] h-[300px] inline"} border border-solid border-transparent shadow-sm`}>
+    <div className={`${componentType == EProductComponentType.flexed ? "basis-1/2" : "min-w-[200px] h-[300px] inline"} border border-solid border-transparent shadow-sm z-50`}>
 
       <Link to={`/product/${product.id}`}>
         <div className="relative w-full rounded-t-lg h-[190px]">

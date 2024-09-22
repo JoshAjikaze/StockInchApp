@@ -38,7 +38,7 @@ const SearchPage = () => {
     console.log(filteredResults)
     
     return (
-        <div className={` ${isSearchToggled ? "bottom-0" : "-bottom-full"} fixed left-0 w-[95%] px-[2.5%] h-screen bg-white transition-all duration-300 z-[100] space-y-10`}>
+        <div className={` ${isSearchToggled ? "bottom-0" : "hidden"} fixed left-0 w-[95%] px-[2.5%] h-screen bg-white transition-all duration-300 z-[100] space-y-10`}>
 
             <div className="flex items-center pt-10 gap-x-5">
                 <button onClick={() => dispatch(searchToggle())} className="flex items-center justify-center default-btn">

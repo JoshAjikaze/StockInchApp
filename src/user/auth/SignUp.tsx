@@ -24,14 +24,14 @@ const SignUp = () => {
         setdata({ ...data, [e.target.id]: e.target.value })
     }
 
-    const [trigger, { isLoading, isSuccess }] = useRegisterMutation()
+    const [trigger, { isLoading, isSuccess, error }] = useRegisterMutation()
 
     const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             await trigger(data).unwrap()
             
-        } catch (error) {
+        } catch (error:any) {
             console.error(error)
         }
     }
@@ -45,8 +45,14 @@ const SignUp = () => {
               password: data.password
             }
           });
-        } else ("An Error Occured 🥺")
-      }, [isSuccess])
+        }
+
+        if(error){
+            // @ts-ignore
+            // toast.error(error?.data.email[0] || 'An error occured');
+            toast.error('An error occured');
+        }
+      }, [isSuccess, error])
 
     return (<Fragment>
         {isLoading && <Loader />}
@@ -75,7 +81,7 @@ const SignUp = () => {
                     <label htmlFor="email" className="input-label">Email Address</label>
                 </div>
                 <div className="relative flex">
-                    <input id="phone" name="phone" onChange={handleChange} type="text" placeholder="Name" className="w-full placeholder-transparent peer input-field" required />
+                    <input id="phone" name="phone" onChange={handleChange} type="number" inputMode="numeric" placeholder="Name" className="w-full placeholder-transparent peer input-field" required />
                     <label htmlFor="phone" className="input-label">Phone Number</label>
                 </div>
                 {/* <div className="relative flex">

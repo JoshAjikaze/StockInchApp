@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import fruit1 from "../../assets/images/Healthy food online shopping.png";
 import fruit2 from "../../assets/images/food delivery in a craft package from hand to hand.png";
-import { ChangeEvent, FormEvent, Fragment, useState } from "react";
+import { ChangeEvent, FormEvent, Fragment, useEffect, useState } from "react";
 import { useLoginMutation } from "../../features/api";
 import Loader from "../../components/loader/Loader";
 import { toast } from "react-toastify";
@@ -22,25 +22,35 @@ const SignIn = () => {
     setdata({ ...data, [e.target.id]: e.target.value });
   };
 
-  const [trigger, { isLoading }] = useLoginMutation();
+  const [trigger, { isLoading, error, isSuccess }] = useLoginMutation();
 
   const navigate = useNavigate();
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const response = await trigger(data).unwrap();
-      // if(error){
-      //   toast.error(response.error)
-      // }
       localStorage.setItem("token", JSON.stringify(response.access));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Login Successful👍")
       setTimeout(() => {
         navigate("/userscreen/home");
         navigate(0)
       }, 500);
-    } catch (error: any) {
-      toast.error(error);
     }
-  };
+
+    if (error) {
+      console.log(error)
+      // @ts-ignore
+      toast.error(error?.data.error || "Invalid Credentials")
+    }
+  }, [isSuccess, error])
+
 
 
   return (

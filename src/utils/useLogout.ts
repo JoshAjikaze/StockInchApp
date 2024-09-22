@@ -6,6 +6,7 @@ export const useLogout = (redirectPath: To) => {
 
   const handleTokenRemoval = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("userProfile");
     navigate(redirectPath);
     location.reload()
   };
