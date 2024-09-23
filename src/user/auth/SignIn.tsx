@@ -9,8 +9,6 @@ import { toast } from "react-toastify";
 const SignIn = () => {
 
   const { state } = useLocation()
-  localStorage.removeItem('token')
-  localStorage.removeItem('userProfile')
   
 
   const [data, setdata] = useState({
