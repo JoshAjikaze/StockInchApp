@@ -11,13 +11,31 @@ import { useDispatch } from "react-redux";
 import { inventoryToggle } from "../../features/slices/togglerSlices";
 import Inventory from "../products/Inventory";
 import SearchPage from "../../components/Search/SearchPage";
+import { useEffect } from "react";
 
 const HomePage = () => {
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        const handleBackButtonClick = (event:any) => {
+            if (event.preventDefault) {
+                event.preventDefault();
+            } else {
+                event.returnValue = false; // For older browsers
+            }
+        };
+
+        window.addEventListener('popstate', handleBackButtonClick);
+
+        return () => {
+            window.removeEventListener('popstate', handleBackButtonClick);
+
+        };
+    }, []);
+
     return (
         <main className="flex flex-col px-5 min-h-[95vh] space-y-5">
-            
+
             <Allcategories />
             <SearchFilter />
             <Inventory />
@@ -44,7 +62,7 @@ const HomePage = () => {
                     </NavLink>
                 </button>
 
-                <button onClick={() => dispatch(inventoryToggle())} className="flex justify-center items-center rounded-full default-btn translated-item bg-Yellow size-12">
+                <button onClick={() => dispatch(inventoryToggle())} className="flex items-center justify-center rounded-full default-btn translated-item bg-Yellow size-12">
                     <img src={inventory} alt="" className="size-6" />
                 </button>
 
