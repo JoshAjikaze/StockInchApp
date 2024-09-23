@@ -49,8 +49,8 @@ const SignUp = () => {
 
         if(error){
             // @ts-ignore
-            // toast.error(error?.data.email[0] || 'An error occured');
-            toast.error('An error occured');
+            toast.error(error?.data.email[0] || 'An error occured');
+            // toast.error('An error occured');
         }
       }, [isSuccess, error])
 
