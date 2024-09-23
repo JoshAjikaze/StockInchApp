@@ -16,7 +16,7 @@ const RecentItems = () => {
                 isSuccess && (
                     <>
                         {
-                            data?.slice(-6, -1).reverse().map((item: { id: number; image_url: string; name: string; location: string; price: number }) =>
+                            data?.slice(-5).reverse().map((item: { id: number; image_url: string; name: string; location: string; price: number }) =>
                                 <ProductComponent key={item.id} product={{
                                     id: item.id,
                                     image: item.image_url,
