@@ -48,7 +48,7 @@ const SignIn = () => {
     if (error) {
       console.log(error)
       // @ts-ignore
-      toast.error(error?.data.error[0] || "Invalid Credentials")
+      toast.error(error?.data.error || "Invalid Credentials")
     }
   }, [isSuccess, error])
 
