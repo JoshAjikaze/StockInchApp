@@ -52,6 +52,13 @@ const SignIn = () => {
     }
   }, [isSuccess, error])
 
+  useEffect(() => {
+    if(localStorage.getItem("userProfile")  !== null){
+      navigate("/userscreen/home")
+      toast.info("You're already logged in")
+    }
+  },[])
+
 
 
   return (
