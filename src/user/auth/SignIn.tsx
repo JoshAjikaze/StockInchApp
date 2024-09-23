@@ -9,6 +9,9 @@ import { toast } from "react-toastify";
 const SignIn = () => {
 
   const { state } = useLocation()
+  localStorage.removeItem('token')
+  localStorage.removeItem('userProfile')
+  
 
   const [data, setdata] = useState({
     email: state?.email,
@@ -47,7 +50,7 @@ const SignIn = () => {
     if (error) {
       console.log(error)
       // @ts-ignore
-      toast.error(error?.data.error || "Invalid Credentials")
+      toast.error(error?.data.error[0] || "Invalid Credentials")
     }
   }, [isSuccess, error])
 
