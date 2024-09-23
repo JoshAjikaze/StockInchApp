@@ -16,7 +16,8 @@ const ProductPage = () => {
 
   const { isFetching, isSuccess, isError, data } = useFetchSingleProductQuery(id)
   console.log(data)
-
+const baseUrl = "https://ajikaze.pythonanywhere.com";
+  
   async function AddToCart() {
     try {
       const response = await addToCart(id).unwrap()
@@ -36,10 +37,11 @@ const ProductPage = () => {
   return (
     <div className="relative h-screen bg-black/50">
 
-      <div className="fixed top-0 z-40 w-full bg-black h-1/2">
+      <div className="fixed top-0 z-40 w-full h-1/2">
         {
           isSuccess && (
-            <img src={data.image_url || 'https://placehold.co/200x200'} alt="" className="object-cover w-full h-full" />
+            // <img src={data.image_url || 'https://placehold.co/200x200'} alt="imageX" className="" />
+            <img src={`${baseUrl}/${data.image}`} className="object-cover w-full h-full" />
           )
         }
       </div>
@@ -57,7 +59,7 @@ const ProductPage = () => {
 
               {/* title */}
               <div className="flex items-center gap-x-5">
-                <img src={data?.image_url || 'https://placehold.co/200x200'} alt="" className="rounded-full size-12" />
+                <img src={`${baseUrl}/${data.image}` || 'https://placehold.co/200x200'} alt="" className="rounded-full size-12" />
                 <p className="font-medium">{data?.owner || "unknown"}</p>
               </div>
               {/* product title and count toggler */}

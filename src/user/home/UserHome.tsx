@@ -85,7 +85,7 @@ const UserHome = () => {
             </div>
 
             {/* search menu */}
-            <div className="sticky flex top-5 gap-x-3 z-[100]">
+            <div className="sticky flex top-5 gap-x-3">
 
                 <input
                     onClick={() => dispatch(searchToggle())}
@@ -94,8 +94,8 @@ const UserHome = () => {
                     className="hidden p-4 px-10 border-transparent border-solid rounded-md outline-none bg-LightGray basis-full"
                 />
 
-                {/* <div onClick={() => dispatch(searchToggle())} className="flex items-center pl-10 rounded-lg basis-full bg-LightGray text-Gray"> */}
-                <div className="flex items-center pl-10 rounded-lg basis-full bg-LightGray text-Gray z-[100]">
+                {/* <div className="flex items-center pl-10 rounded-lg basis-full bg-LightGray text-Gray z-[100]"> */}
+                <div onClick={() => dispatch(searchToggle())} className="flex items-center pl-10 rounded-lg basis-full bg-LightGray text-Gray">
                     Search Products, Brands...
                 </div>
 
@@ -126,7 +126,7 @@ const UserHome = () => {
             </div>
 
             {/* Recent Items Menu */}
-            <div className="z-50">
+            <div className="">
                 <p className="mb-3 font-semibold text-Gray">Recents</p>
                 <RecentItems />
             </div>
