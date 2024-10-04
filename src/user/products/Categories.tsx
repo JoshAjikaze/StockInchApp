@@ -16,11 +16,7 @@ const Categories = () => {
   console.log(data, isFetching, isError)
 
 
-  useEffect(() => {
-    if (isSuccess) {
-      setSortedData(data)
-    }
-  },[])
+
 
 
   const [sortedData, setSortedData] = useState(data);
@@ -61,6 +57,12 @@ const Categories = () => {
 
   const  categoryName = localStorage.getItem("categoryName")
   console.log(categoryName)
+
+  useEffect(() => {
+    if (isSuccess) {
+      setSortedData(data)
+    }
+  },[isSuccess])
 
   return (
     <Fragment>
