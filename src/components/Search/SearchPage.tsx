@@ -68,7 +68,7 @@ const SearchPage = () => {
                             title: product.name,
                             location: product.location,
                             price: product.price
-                        }} componentType={1} />
+                        }} componentType={3} />
                     ))
                 ) : (
                     <p>No products found.</p>

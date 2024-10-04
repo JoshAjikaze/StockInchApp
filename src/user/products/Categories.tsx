@@ -104,7 +104,7 @@ const Categories = () => {
                       title: item.name,
                       location: item.location,
                       price: item.price
-                    }} componentType={1} />
+                    }} componentType={3} />
                   )
                 }
               </>
