@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react"
+import { Fragment, useEffect, useState } from "react"
 import ProductComponent from "@/components/ProductComponent"
 import { useParams } from 'react-router-dom'
 import { useGetProductsByCategoryQuery } from "@/features/api"
@@ -16,6 +16,52 @@ const Categories = () => {
   console.log(data, isFetching, isError)
 
 
+  useEffect(() => {
+    if (isSuccess) {
+      setSortedData(data)
+    }
+  },[])
+
+
+  const [sortedData, setSortedData] = useState(data);
+  const [sortOrder, setSortOrder] = useState('asc'); // Initial order
+
+  const sortByPrice = (data: any, order: any) => {
+    // Clone the data to avoid mutating the original array
+    const sortedData = [...data];
+    
+    console.log(sortOrder)
+
+    sortedData.sort((a, b) => {
+      // Parse the price strings to numbers for accurate comparison
+      const priceA = parseFloat(a.price.replace(/,/g, ''));
+      const priceB = parseFloat(b.price.replace(/,/g, ''));
+
+      // Sort based on order (ascending or descending)
+      if (order === 'asc') {
+        return priceA - priceB;
+      } else if (order === 'desc') {
+        return priceB - priceA;
+      } else {
+        // Handle invalid order (optional)
+        console.error('Invalid sort order. Use "asc" or "desc".');
+        return 0;
+      }
+    });
+
+    return sortedData;
+  };
+
+
+  const handleSort = (newOrder: any) => {
+    const sorted = sortByPrice([...sortedData], newOrder);
+    setSortedData(sorted);
+    setSortOrder(newOrder);
+  };
+
+  const  categoryName = localStorage.getItem("categoryName")
+  console.log(categoryName)
+
   return (
     <Fragment>
       <main className="p-3">
@@ -27,7 +73,7 @@ const Categories = () => {
             </svg>
           </button>
 
-          <p className="text-lg font-semibold capitalize text-Gray">{id || "All Categories"}</p>
+          <p className="text-lg font-semibold capitalize text-Gray">{categoryName || id || "All Categories"}</p>
 
           <button onClick={handleToggle} className="default-btn">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5">
@@ -38,15 +84,20 @@ const Categories = () => {
         </div>
 
         <div className="grid grid-cols-2 gap-2">
+          {
+            isFetching && (
+              <>Loading...</>
+            )
+          }
 
           {
             isSuccess && (
               <>
                 {
-                  data?.map((item: { id: number; image_url: string; name: string; location: string; price: number }) =>
+                  sortedData?.map((item: { id: number; image: string; name: string; location: string; price: number }) =>
                     <ProductComponent key={item.id} product={{
                       id: item.id,
-                      image: item.image_url,
+                      image: item.image,
                       shop: "Shoprite",
                       title: item.name,
                       location: item.location,
@@ -60,11 +111,11 @@ const Categories = () => {
           {
             isSuccess && (
               <>
-              {
-                data.length < 1 && (
-                  <>There are no Items in this category yet</>
-                )
-              }
+                {
+                  data.length < 1 && (
+                    <>There are no Items in this category yet</>
+                  )
+                }
               </>
             )
           }
@@ -74,7 +125,7 @@ const Categories = () => {
       </main>
 
       <div className={`${toggle ? "block" : "hidden"} fixed bottom-0 h-screen w-full z-50 bg-black/50`}>
-        <div className={`${toggle ? "block" : "hidden"} fixed bottom-0 h-1/2 w-full z-50 bg-white rounded-t-lg`}>
+        <div className={`${toggle ? "block" : "hidden"} fixed bottom-0 h-1/5 w-full z-50 bg-white rounded-t-lg`}>
           <div className="flex items-center justify-between p-3">
             <button onClick={handleToggle} className="flex items-center justify-center default-btn">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-6">
@@ -82,8 +133,11 @@ const Categories = () => {
               </svg>
             </button>
 
-            <button className="default-btn">Reset All</button>
+            <button className="invisible default-btn">Reset All</button>
           </div>
+          <section className="flex items-center justify-center gap-5">
+            <button onClick={() => handleSort('asc')} className="p-2 font-semibold border-0 rounded-md bg-Yellow">Sort (Low to High)</button>
+            <button onClick={() => handleSort('desc')} className="p-2 font-semibold border-0 rounded-md bg-Yellow">Sort (High to Low)</button>          </section>
         </div>
       </div>
 

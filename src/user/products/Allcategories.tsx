@@ -31,7 +31,7 @@ const Allcategories = () => {
             <div className="my-10 p-5 h-[70vh] overflow-y-scroll no-scrollbar">
                 {
                     categoriesData?.map((item:any, Idx:number) => (
-                        <Link to={`/categories/${item.id}`} onClick={() => dispatch(toggle())} key={Idx} className="relative flex items-center text-black no-underline border gap-x-5">
+                        <Link to={`/categories/${item.id}`} onClick={() => {dispatch(toggle()); localStorage.setItem("categoryName", item.name)}} key={Idx} className="relative flex items-center text-black no-underline border gap-x-5">
                             <p>
                                 <img src={item.icon || "https://placehold.co/30x30"} alt="" className="size-12" />
                             </p>

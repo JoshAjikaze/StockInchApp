@@ -9,7 +9,7 @@ type TProducts = {
   title: string,
   shop: string,
   location: string,
-  price: number,
+  price: any,
   image: string
 }
 
@@ -38,6 +38,9 @@ const InventoryItemComponent = ({ product }: TComponentProps) => {
     }
   }
 
+  const baseUrl = "https://ajikaze.pythonanywhere.com";
+
+
   return (
 
 
@@ -45,7 +48,8 @@ const InventoryItemComponent = ({ product }: TComponentProps) => {
       {/* Left side */}
       <div className="space-y-3">
         <div className="flex items-center gap-x-5">
-          <img src={product.image || "https://placehold.co/100x100"} alt="" className="rounded-lg size-12" />
+          {/* <img src={product.image || "https://placehold.co/100x100"} alt="" className="rounded-lg size-12" /> */}
+          <img src={`${baseUrl}/${product.image}`} alt="" className="rounded-lg size-12" />
           <div>
             <p className="text-base font-semibold">{product.title}</p>
             <p><span>{product.shop}</span></p>
@@ -69,7 +73,7 @@ const InventoryItemComponent = ({ product }: TComponentProps) => {
 
         <InventoryItemIncrement />
 
-        <p className='text-sm'><span className="font-medium">N</span> {product.price}</p>
+        <p className='text-sm font-semibold'><span className="">N</span> {parseFloat(product.price as string).toLocaleString()}</p>
       </div>
     </section>
   )

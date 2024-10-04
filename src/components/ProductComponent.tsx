@@ -12,7 +12,7 @@ type TProduct = {
   shop: string;
   title: string;
   location: string;
-  price: number;
+  price: string | number;
 };
 
 type TProductComponent = {
@@ -36,7 +36,7 @@ const ProductComponent = ({ product, componentType }: TProductComponent) => {
       </div>
 
       <div className="flex items-center justify-between p-2 rounded-b-lg bg-LightGray">
-        <p className="text-sm font-medium">₦{product.price}</p>
+        <p className="text-sm font-medium">₦{parseFloat(product.price as string).toLocaleString()}</p>
         <div className="invisible"><CheckBox /></div>
       </div>
     </div>
